@@ -122,6 +122,65 @@
         .animate-slide-in-up {
             animation: slideInUp 1s ease-out;
         }
+
+        /* Responsive scaling for 125% zoom and high DPI screens */
+        @media (min-resolution: 1.25dppx), (-webkit-min-device-pixel-ratio: 1.25) {
+            html {
+                font-size: 14px;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            h1 {
+                font-size: 3rem !important;
+            }
+
+            h2 {
+                font-size: 2rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            h3 {
+                font-size: 1.25rem !important;
+            }
+
+            .container {
+                max-width: 1000px;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .card h3 {
+                font-size: 1.1rem !important;
+            }
+
+            p, span {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Additional scaling for 150% zoom */
+        @media (min-resolution: 1.5dppx), (-webkit-min-device-pixel-ratio: 1.5) {
+            html {
+                font-size: 12px;
+            }
+
+            .section {
+                padding: 2.5rem 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem !important;
+            }
+
+            h2 {
+                font-size: 1.75rem !important;
+            }
+        }
     </style>
 </head>
 
@@ -286,8 +345,20 @@
                             <span class="text-gray-700 dark:text-gray-300">TailwindCSS</span>
                         </div>
                         <div class="flex items-center gap-2">
-                            <i class="fas fa-paint-brush text-purple-500 text-xl"></i>
-                            <span class="text-gray-700 dark:text-gray-300">Figma</span>
+                            <i class="fab fa-node-js text-green-500 text-xl"></i>
+                            <span class="text-gray-700 dark:text-gray-300">Express.js</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-database text-blue-500 text-xl"></i>
+                            <span class="text-gray-700 dark:text-gray-300">PostgreSQL</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fab fa-git-alt text-orange-500 text-xl"></i>
+                            <span class="text-gray-700 dark:text-gray-300">Git & GitHub</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fas fa-palette text-pink-500 text-xl"></i>
+                            <span class="text-gray-700 dark:text-gray-300">Canva</span>
                         </div>
                     </div>
                 </div>
@@ -330,63 +401,92 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">Projects</h2>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project 1 -->
+                <!-- Project 1: AI Chatbot -->
+                <div class="bg-gray-50 dark:bg-dark-200 rounded-xl shadow-md overflow-hidden card">
+                    <div class="h-48 bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
+                        <i class="fas fa-robot text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">AI Chatbot</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Team-based hackathon chatbot with real-time interaction built with HTML, CSS, JavaScript, and Python.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">HTML</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">CSS</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Python</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: E-commerce Website -->
                 <div class="bg-gray-50 dark:bg-dark-200 rounded-xl shadow-md overflow-hidden card">
                     <div class="h-48 bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
                         <i class="fas fa-shopping-cart text-white text-6xl"></i>
                     </div>
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">E-commerce Website</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">A fully responsive e-commerce website built
-                            with HTML, CSS, and JavaScript.</p>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Full-stack online shopping platform with authentication and cart built with MERN Stack.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">HTML</span>
-                            <span
-                                class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">CSS</span>
-                            <span
-                                class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Express.js</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">React.js</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Node.js</span>
                         </div>
                         <div class="flex gap-4">
-                            <a href="#"
-                                class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
                                 <i class="fab fa-github"></i> Code
                             </a>
-                            <a href="https://9lt4ggf9-5501.inc1.devtunnels.ms/"
-                                class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                            <a href="https://9lt4ggf9-5501.inc1.devtunnels.ms/" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2 -->
+                <!-- Project 3: Event Registration System -->
                 <div class="bg-gray-50 dark:bg-dark-200 rounded-xl shadow-md overflow-hidden card">
-                    <div class="h-48 bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center">
-                        <i class="fas fa-store text-white text-6xl"></i>
+                    <div class="h-48 bg-gradient-to-r from-green-400 to-teal-500 flex items-center justify-center">
+                        <i class="fas fa-calendar-check text-white text-6xl"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">E-commerce Platform</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">Modern e-commerce platform built with Vite,
-                            React.js, TailwindCSS, and MUI.</p>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Event Registration System</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Web app for event management and student registration built with MERN Stack.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">React.js</span>
-                            <span
-                                class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">TailwindCSS</span>
-                            <span
-                                class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">MUI</span>
-                            <span
-                                class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Vite</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">MongoDB</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Express.js</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">React.js</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Node.js</span>
                         </div>
                         <div class="flex gap-4">
-                            <a href="#"
-                                class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
                                 <i class="fab fa-github"></i> Code
                             </a>
-                            <a href="#"
-                                class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
-                                <i class="fas fa-external-link-alt"></i> Live Demo
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Automatic Time-Table Scheduler -->
+                <div class="bg-gray-50 dark:bg-dark-200 rounded-xl shadow-md overflow-hidden card">
+                    <div class="h-48 bg-gradient-to-r from-orange-400 to-red-500 flex items-center justify-center">
+                        <i class="fas fa-clock text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Automatic Time-Table Scheduler</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Automated scheduling system to reduce timetable conflicts built with PERN Stack.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Express.js</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">React.js</span>
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Node.js</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                                <i class="fab fa-github"></i> Code
                             </a>
                         </div>
                     </div>
@@ -402,32 +502,45 @@
                 Participation</h2>
 
             <div class="max-w-3xl mx-auto">
-                <!-- Experience 1 -->
+                <!-- Awards Section -->
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
+                    <i class="fas fa-trophy text-yellow-500"></i> Awards
+                </h3>
+
+                <!-- Award 1 -->
                 <div class="bg-white dark:bg-dark-100 rounded-xl shadow-md p-6 mb-6 card">
                     <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Hackathon Participant</h3>
-                        <span
-                            class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full text-sm">1st
-                            Prize</span>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white">1st Prize - Internal Hackathon</h3>
+                        <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-3 py-1 rounded-full text-sm">1st Prize</span>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-300 mb-2">Internal Hackathon (2025)</p>
-                    <p class="text-gray-600 dark:text-gray-300">Developed an innovative chatbot solution for customer
-                        service automation.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-2">2025</p>
+                    <p class="text-gray-600 dark:text-gray-300">Won first place for presenting an innovative tech solution: project-chat bot.</p>
                 </div>
 
-                <!-- Experience 2 -->
+                <!-- Award 2 -->
                 <div class="bg-white dark:bg-dark-100 rounded-xl shadow-md p-6 mb-6 card">
-                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Participant</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-2">Tamizhi Hackathon - State Level (2025)</p>
-                    <p class="text-gray-600 dark:text-gray-300">Collaborated with a team to develop a solution for
-                        regional language processing.</p>
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white">2nd Prize - Football Tournament</h3>
+                        <span class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-3 py-1 rounded-full text-sm">2nd Prize</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-2">Journal Level | Literacy Mission MHSS | 2022</p>
                 </div>
 
-                <!-- Experience 3 -->
+                <!-- Participations Section -->
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-white mb-6 mt-12 flex items-center gap-2">
+                    <i class="fas fa-handshake text-primary-600"></i> Participations
+                </h3>
+
+                <!-- Participation 1 -->
+                <div class="bg-white dark:bg-dark-100 rounded-xl shadow-md p-6 mb-6 card">
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Tamizhi Hackathon (2025)</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Chosen to participate in a state-level innovation event dedicated to advancing Tamil language technology solutions.</p>
+                </div>
+
+                <!-- Participation 2 -->
                 <div class="bg-white dark:bg-dark-100 rounded-xl shadow-md p-6 card">
-                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Paper Presentations</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Presented on various technology and commerce topics at
-                        inter-college events.</p>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Smart India Hackathon (SIH)</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Competed in a national-level innovation challenge, contributing to team-based solution design, development, and presentation.</p>
                 </div>
             </div>
         </div>
@@ -445,20 +558,14 @@
                     </h3>
                     <p class="text-gray-600 dark:text-gray-300 mb-2">KPR College of Arts, Science & Research, Coimbatore
                     </p>
-                    <p class="text-gray-600 dark:text-gray-300">2022 – 2026</p>
+                    <p class="text-gray-600 dark:text-gray-300">2023 – 2026</p>
                 </div>
 
                 <!-- Education 2 -->
                 <div class="bg-gray-50 dark:bg-dark-200 rounded-xl shadow-md p-6 mb-6 card">
-                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Higher Secondary Education</h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-2">Mission MHSS</p>
-                    <p class="text-gray-600 dark:text-gray-300">2020 – 2022</p>
-                </div>
-
-                <!-- Education 3 -->
-                <div class="bg-gray-50 dark:bg-dark-200 rounded-xl shadow-md p-6 card">
-                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Secondary School</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Completed with 77% aggregate</p>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Higher Secondary Education (HSC)</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-2">Literacy Mission Matriculation Higher Secondary School</p>
+                    <p class="text-gray-600 dark:text-gray-300">2021 – 2023 | Completed with 77% aggregate</p>
                 </div>
             </div>
         </div>
@@ -482,7 +589,7 @@
                             </div>
                             <div>
                                 <p class="text-gray-700 dark:text-gray-300">Phone</p>
-                                <p class="text-gray-800 dark:text-white font-medium">9626940995</p>
+                                <p class="text-gray-800 dark:text-white font-medium">9626949995</p>
                             </div>
                         </div>
 
@@ -493,7 +600,7 @@
                             </div>
                             <div>
                                 <p class="text-gray-700 dark:text-gray-300">Email</p>
-                                <a href="" class="text-gray-800 dark:text-white font-medium">varshank486@gmail.com</a>
+                                <a href="mailto:varshan4685@gmail.com" class="text-gray-800 dark:text-white font-medium">varshan4685@gmail.com</a>
                             </div>
                         </div>
 
@@ -504,7 +611,18 @@
                             </div>
                             <div>
                                 <p class="text-gray-700 dark:text-gray-300">LinkedIn</p>
-                                <a href="https://linkedin.com/in/varshan05" class="text-gray-800 dark:text-white font-medium">linkedin.com/in/varshan05</a>
+                                <a href="https://www.linkedin.com/in/varshan-k-v005" target="_blank" rel="noopener noreferrer" class="text-gray-800 dark:text-white font-medium hover:text-primary-600 transition-colors">linkedin.com/in/varshan-k-v005</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center">
+                                <i class="fab fa-github text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-700 dark:text-gray-300">GitHub</p>
+                                <a href="https://github.com/varshan054685" target="_blank" rel="noopener noreferrer" class="text-gray-800 dark:text-white font-medium hover:text-primary-600 transition-colors">github.com/varshan054685</a>
                             </div>
                         </div>
 
@@ -515,7 +633,7 @@
                             </div>
                             <div>
                                 <p class="text-gray-700 dark:text-gray-300">Location</p>
-                                <p class="text-gray-800 dark:text-white font-medium">Coimbatore, Tamilnadu</p>
+                                <p class="text-gray-800 dark:text-white font-medium">Coimbatore, Tamilnadu-641668</p>
                             </div>
                         </div>
                     </div>
@@ -558,13 +676,13 @@
     <footer class="bg-dark-100 text-white py-8">
         <div class="container mx-auto px-4 text-center">
             <div class="flex justify-center space-x-6 mb-6">
-                <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                <a href="https://www.linkedin.com/in/varshan-k-v005" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors">
                     <i class="fab fa-linkedin-in text-2xl"></i>
                 </a>
-                <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                <a href="https://github.com/varshan054685" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors">
                     <i class="fab fa-github text-2xl"></i>
                 </a>
-                <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                <a href="mailto:varshan4685@gmail.com" class="text-gray-300 hover:text-white transition-colors">
                     <i class="fas fa-envelope text-2xl"></i>
                 </a>
             </div>
