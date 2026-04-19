@@ -416,7 +416,7 @@
                             <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Python</span>
                         </div>
                         <div class="flex gap-4">
-                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                            <a href="#" onclick="showNotAvailable(event)" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1 cursor-pointer">
                                 <i class="fab fa-github"></i> Code
                             </a>
                         </div>
@@ -438,10 +438,10 @@
                             <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Node.js</span>
                         </div>
                         <div class="flex gap-4">
-                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                            <a href="#" onclick="showNotAvailable(event)" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1 cursor-pointer">
                                 <i class="fab fa-github"></i> Code
                             </a>
-                            <a href="https://9lt4ggf9-5501.inc1.devtunnels.ms/" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                            <a href="#" onclick="showNotAvailable(event)" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1 cursor-pointer">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
@@ -463,8 +463,11 @@
                             <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Node.js</span>
                         </div>
                         <div class="flex gap-4">
-                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                            <a href="https://github.com/varshan054685/college-event-registration" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
                                 <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="https://college-event-registration-ten.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
                     </div>
@@ -485,8 +488,11 @@
                             <span class="bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 px-3 py-1 rounded-full text-sm">Node.js</span>
                         </div>
                         <div class="flex gap-4">
-                            <a href="#" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                            <a href="https://github.com/varshan054685/Automatic_Time-Table_scheduler" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
                                 <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="https://automatic-time-table-scheduler.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-primary-600 dark:text-primary-400 hover:underline flex items-center gap-1">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
                     </div>
@@ -589,7 +595,7 @@
                             </div>
                             <div>
                                 <p class="text-gray-700 dark:text-gray-300">Phone</p>
-                                <p class="text-gray-800 dark:text-white font-medium">9626949995</p>
+                                <p class="text-gray-800 dark:text-white font-medium">9626940995</p>
                             </div>
                         </div>
 
@@ -761,6 +767,12 @@
         window.addEventListener('scroll', animateOnScroll);
         // Initial check
         animateOnScroll();
+
+        // Show popup for unavailable links
+        function showNotAvailable(event) {
+            event.preventDefault();
+            alert('Link not available at the moment. Check back soon!');
+        }
     </script>
 </body>
 
