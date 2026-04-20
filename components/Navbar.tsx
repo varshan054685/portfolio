@@ -69,7 +69,9 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
           <div
             className={`flex items-center justify-between px-6 py-3 rounded-2xl transition-all duration-300 ${
               isScrolled
-                ? 'glass-dark shadow-glass'
+                ? isDark
+                  ? 'glass-dark shadow-glass'
+                  : 'glass bg-white/80 shadow-lg'
                 : 'bg-transparent'
             }`}
           >

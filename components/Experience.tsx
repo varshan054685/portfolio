@@ -98,7 +98,7 @@ export default function Experience({ isDark }: ExperienceProps) {
                           )}
                         </div>
                         <p className="text-sm text-cyan-400 mb-2">{item.organization}</p>
-                        <p className="text-sm text-white/60">{item.description}</p>
+                        <p className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>{item.description}</p>
                       </div>
                     </motion.div>
                   );
@@ -156,8 +156,8 @@ export default function Experience({ isDark }: ExperienceProps) {
                           </span>
                         </div>
                         <p className="text-sm text-purple-400 mb-1">{item.institution}</p>
-                        <p className="text-sm text-white/50 mb-2">{item.location}</p>
-                        <p className="text-sm text-white/60">{item.description}</p>
+                        <p className={`text-sm mb-2 ${isDark ? 'text-white/50' : 'text-gray-500'}`}>{item.location}</p>
+                        <p className={`text-sm ${isDark ? 'text-white/60' : 'text-gray-600'}`}>{item.description}</p>
                       </div>
                     </motion.div>
                   );
@@ -187,7 +187,7 @@ export default function Experience({ isDark }: ExperienceProps) {
                   className={`p-4 rounded-xl text-center ${isDark ? 'glass-dark' : 'glass bg-white/50'}`}
                 >
                   <div className="text-2xl font-bold gradient-text">{stat.value}</div>
-                  <div className="text-xs text-white/50">{stat.label}</div>
+                  <div className={`text-xs ${isDark ? 'text-white/50' : 'text-gray-500'}`}>{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>

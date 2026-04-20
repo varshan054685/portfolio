@@ -124,12 +124,12 @@ export default function Contact({ isDark }: ContactProps) {
                     <item.icon className="w-5 h-5 text-cyan-400" />
                   </div>
                   <div>
-                    <p className="text-sm text-white/50">{item.label}</p>
+                    <p className={`text-sm ${isDark ? 'text-white/50' : 'text-gray-500'}`}>{item.label}</p>
                     <p className={`font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>
                       {item.value}
                     </p>
                   </div>
-                  <ArrowUpRight className="w-5 h-5 ml-auto text-white/30 group-hover:text-cyan-400 transition-colors" />
+                  <ArrowUpRight className={`w-5 h-5 ml-auto transition-colors ${isDark ? 'text-white/30' : 'text-gray-400'} group-hover:text-cyan-400`} />
                 </motion.a>
               ))}
             </div>
@@ -184,7 +184,7 @@ export default function Contact({ isDark }: ContactProps) {
                   <h4 className={`text-xl font-semibold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                     Message Sent!
                   </h4>
-                  <p className="text-white/60">Thank you for reaching out. I&apos;ll get back to you soon.</p>
+                  <p className={isDark ? 'text-white/60' : 'text-gray-600'}>Thank you for reaching out. I&apos;ll get back to you soon.</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">

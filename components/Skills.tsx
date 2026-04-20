@@ -101,7 +101,7 @@ export default function Skills({ isDark }: SkillsProps) {
                       </span>
                       <span className="text-sm text-cyan-400 font-mono">{skill.level}%</span>
                     </div>
-                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
+                    <div className={`h-2 rounded-full overflow-hidden ${isDark ? 'bg-white/10' : 'bg-gray-200'}`}>
                       <motion.div
                         className="h-full rounded-full relative overflow-hidden"
                         style={{
