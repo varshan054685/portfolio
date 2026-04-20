@@ -103,9 +103,6 @@ export default function Footer({ isDark }: FooterProps) {
             isDark ? 'border-white/10 text-white/40' : 'border-gray-200 text-gray-500'
           }`}
         >
-          <p className="flex items-center justify-center gap-1">
-            Made with <Heart className="w-4 h-4 text-red-500 fill-red-500" /> using Next.js & Tailwind
-          </p>
         </motion.div>
 
         {/* Back to top button */}
