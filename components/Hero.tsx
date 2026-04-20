@@ -138,7 +138,7 @@ export default function Hero({ isDark }: HeroProps) {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mb-6"
         >
-          <p className="text-xl sm:text-2xl md:text-3xl font-light text-white/80 font-mono">
+          <p className={`text-xl sm:text-2xl md:text-3xl font-light font-mono ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
             {displayText}
             <span
               className={`inline-block w-0.5 h-6 sm:h-8 ml-1 bg-cyan-400 transition-opacity duration-100 ${
@@ -153,7 +153,7 @@ export default function Hero({ isDark }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto mb-10"
+          className={`text-lg sm:text-xl max-w-2xl mx-auto mb-10 ${isDark ? 'text-white/60' : 'text-gray-600'}`}
         >
           {personalData.tagline}
         </motion.p>
@@ -210,7 +210,7 @@ export default function Hero({ isDark }: HeroProps) {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full glass text-white/70 hover:text-cyan-400 hover:border-cyan-400/50 transition-all duration-300"
+              className={`p-3 rounded-full transition-all duration-300 ${isDark ? 'glass text-white/70' : 'glass bg-white/50 text-gray-600'} hover:text-cyan-400 hover:border-cyan-400/50`}
               whileHover={{ scale: 1.2, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
               aria-label={label}
@@ -230,7 +230,7 @@ export default function Hero({ isDark }: HeroProps) {
       >
         <motion.button
           onClick={handleScrollDown}
-          className="p-3 rounded-full glass text-white/50 hover:text-cyan-400 transition-colors cursor-pointer"
+          className={`p-3 rounded-full transition-colors cursor-pointer ${isDark ? 'glass text-white/50' : 'glass bg-white/50 text-gray-500'} hover:text-cyan-400`}
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
         >

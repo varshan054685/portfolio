@@ -137,7 +137,7 @@ export default function About({ isDark }: AboutProps) {
                   <h4 className={`font-semibold mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                     {item.title}
                   </h4>
-                  <p className="text-sm text-white/50">{item.description}</p>
+                  <p className={`text-sm ${isDark ? 'text-white/50' : 'text-gray-500'}`}>{item.description}</p>
                 </motion.div>
               ))}
             </div>
