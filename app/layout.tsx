@@ -13,20 +13,20 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Varshan K | Front-End Developer & B.Com (IT) Student',
-  description: 'Portfolio of Varshan K, a passionate front-end developer specializing in React.js, MERN/PERN stack, and creating human-centered web solutions.',
-  keywords: ['Varshan K', 'front-end developer', 'React.js', 'Next.js', 'TailwindCSS', 'MERN stack', 'portfolio', 'web developer'],
+  title: 'Varshan K | Full Stack Developer & B.Com (IT) Student',
+  description: 'Portfolio of Varshan K, a passionate full stack developer specializing in React.js, MERN/PERN stack, and creating human-centered web solutions.',
+  keywords: ['Varshan K', 'full stack developer', 'React.js', 'Next.js', 'TailwindCSS', 'MERN stack', 'portfolio', 'web developer'],
   authors: [{ name: 'Varshan K' }],
   openGraph: {
-    title: 'Varshan K | Front-End Developer',
-    description: 'Passionate front-end developer creating human-centered web experiences',
+    title: 'Varshan K | Full Stack Developer',
+    description: 'Passionate full stack developer creating human-centered web experiences',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Varshan K | Front-End Developer',
-    description: 'Passionate front-end developer creating human-centered web experiences',
+    title: 'Varshan K | Full Stack Developer',
+    description: 'Passionate full stack developer creating human-centered web experiences',
   },
   robots: {
     index: true,
