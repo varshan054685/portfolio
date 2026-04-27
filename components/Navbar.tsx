@@ -65,9 +65,9 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
           <div
-            className={`flex items-center justify-between px-6 py-3 rounded-2xl transition-all duration-300 ${
+            className={`flex items-center justify-between px-3 sm:px-6 py-3 rounded-2xl transition-all duration-300 ${
               isScrolled
                 ? isDark
                   ? 'glass-dark shadow-glass'
@@ -180,14 +180,14 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
           >
             {/* Backdrop */}
             <motion.div
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              className={`absolute inset-0 backdrop-blur-md ${isDark ? 'bg-black/80' : 'bg-white/90'}`}
               onClick={() => setIsMobileMenuOpen(false)}
             />
 
             {/* Menu Content */}
             <motion.div
-              className={`absolute top-20 left-4 right-4 p-6 rounded-2xl ${
-                isDark ? 'glass-dark' : 'glass bg-white/80'
+              className={`absolute top-20 left-4 right-4 p-6 rounded-2xl shadow-2xl ${
+                isDark ? 'bg-[#0a0a0a]/95 border border-white/10' : 'bg-white/95 border border-gray-200'
               }`}
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -207,8 +207,8 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                       activeSection === link.href.slice(1)
                         ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-400'
                         : isDark
-                        ? 'text-white/70 hover:bg-white/10 hover:text-white'
-                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                        ? 'text-white hover:bg-white/10 hover:text-white'
+                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                     }`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}

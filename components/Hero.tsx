@@ -138,7 +138,7 @@ export default function Hero({ isDark }: HeroProps) {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="mb-6"
         >
-          <p className={`text-xl sm:text-2xl md:text-3xl font-light font-mono ${isDark ? 'text-white/80' : 'text-gray-700'}`}>
+          <p className={`text-xl sm:text-2xl md:text-3xl font-light font-mono ${isDark ? 'text-white' : 'text-gray-800'}`}>
             {displayText}
             <span
               className={`inline-block w-0.5 h-6 sm:h-8 ml-1 bg-cyan-400 transition-opacity duration-100 ${
@@ -153,7 +153,7 @@ export default function Hero({ isDark }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className={`text-lg sm:text-xl max-w-2xl mx-auto mb-10 ${isDark ? 'text-white/60' : 'text-gray-600'}`}
+          className={`text-lg sm:text-xl max-w-2xl mx-auto mb-10 ${isDark ? 'text-white/90' : 'text-gray-700'}`}
         >
           {personalData.tagline}
         </motion.p>
