@@ -8,8 +8,11 @@ export const personalData = {
   phone: '9626949995',
   linkedin: 'https://www.linkedin.com/in/varshan-k-v005',
   github: 'https://github.com/varshan054685',
+  instagram: 'https://instagram.com/im_luffy_56',
+  whatsapp: 'https://wa.me/919626949995',
   resumeLink: '/Varshan_Resume.pdf',
 };
+
 
 export const skills = {
   technical: [

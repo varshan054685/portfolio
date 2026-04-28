@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { personalData } from '@/lib/data';
-import { Github, Linkedin, Mail, Heart, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Mail, Heart, ArrowUp, Instagram } from 'lucide-react';
+import { TbBrandWhatsapp } from 'react-icons/tb';
 
 interface FooterProps {
   isDark: boolean;
@@ -71,6 +72,8 @@ export default function Footer({ isDark }: FooterProps) {
             {[
               { icon: Github, href: personalData.github, label: 'GitHub' },
               { icon: Linkedin, href: personalData.linkedin, label: 'LinkedIn' },
+              { icon: Instagram, href: personalData.instagram, label: 'Instagram' },
+              { icon: TbBrandWhatsapp, href: personalData.whatsapp, label: 'WhatsApp' },
               { icon: Mail, href: `mailto:${personalData.email}`, label: 'Email' },
             ].map(({ icon: Icon, href, label }) => (
               <motion.a

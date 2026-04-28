@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail, Instagram } from 'lucide-react';
+import { TbBrandWhatsapp } from 'react-icons/tb';
 import { personalData } from '@/lib/data';
 
 interface HeroProps {
@@ -203,6 +204,8 @@ export default function Hero({ isDark }: HeroProps) {
           {[
             { icon: Github, href: personalData.github, label: 'GitHub' },
             { icon: Linkedin, href: personalData.linkedin, label: 'LinkedIn' },
+            { icon: Instagram, href: personalData.instagram, label: 'Instagram' },
+            { icon: TbBrandWhatsapp, href: personalData.whatsapp, label: 'WhatsApp' },
             { icon: Mail, href: `mailto:${personalData.email}`, label: 'Email' },
           ].map(({ icon: Icon, href, label }) => (
             <motion.a

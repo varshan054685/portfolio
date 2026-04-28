@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { personalData } from '@/lib/data';
-import { Mail, Phone, MapPin, Github, Linkedin, Send, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Send, ArrowUpRight, Instagram } from 'lucide-react';
+import { TbBrandWhatsapp } from 'react-icons/tb';
 
 interface ContactProps {
   isDark: boolean;
@@ -85,6 +86,18 @@ export default function Contact({ isDark }: ContactProps) {
       label: 'LinkedIn',
       href: personalData.linkedin,
       color: 'hover:text-blue-400',
+    },
+    {
+      icon: Instagram,
+      label: 'Instagram',
+      href: personalData.instagram,
+      color: 'hover:text-pink-500',
+    },
+    {
+      icon: TbBrandWhatsapp,
+      label: 'WhatsApp',
+      href: personalData.whatsapp,
+      color: 'hover:text-green-500',
     },
   ];
 
