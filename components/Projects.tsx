@@ -15,6 +15,7 @@ const projectGradients = [
   { from: '#10b981', to: '#059669', letter: 'E' }, // E-commerce - green
   { from: '#f97316', to: '#dc2626', letter: 'E' }, // Event Registration - orange to red
   { from: '#ec4899', to: '#be123c', letter: 'A' }, // Time-Table Scheduler - pink to rose
+  { from: '#6366f1', to: '#a855f7', letter: 'P' }, // Portfolio Website - indigo to purple
 ];
 
 export default function Projects({ isDark }: ProjectsProps) {
