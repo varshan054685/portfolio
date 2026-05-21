@@ -43,6 +43,9 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
       }
     };
 
+    // Initial check
+    handleScroll();
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -58,22 +61,29 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'py-3' : 'py-5'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50"
         initial={{ y: -100 }}
-        animate={{ y: 0 }}
+        animate={{
+          y: 0,
+          paddingTop: isScrolled ? '0.75rem' : '1.25rem',
+          paddingBottom: isScrolled ? '0.75rem' : '1.25rem'
+        }}
         transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
       >
         <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-          <div
-            className={`flex items-center justify-between px-3 sm:px-6 py-3 rounded-2xl transition-all duration-300 ${
-              isScrolled
-                ? isDark
-                  ? 'glass-dark shadow-glass'
-                  : 'glass bg-white/80 shadow-lg'
-                : 'bg-transparent'
-            }`}
+          <motion.div
+            className="flex items-center justify-between px-3 sm:px-6 py-3 rounded-2xl"
+            animate={{
+              backgroundColor: isScrolled
+                ? isDark ? 'rgba(0, 0, 0, 0.3)' : 'rgba(255, 255, 255, 0.8)'
+                : 'rgba(0, 0, 0, 0)',
+              backdropFilter: isScrolled ? 'blur(10px)' : 'blur(0px)',
+              boxShadow: isScrolled
+                ? isDark ? '0 8px 32px 0 rgba(31, 38, 135, 0.37)' : '0 10px 15px -3px rgba(0, 0, 0, 0.1)'
+                : 'none',
+              border: isScrolled ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(255, 255, 255, 0)'
+            }}
+            transition={{ duration: 0.3 }}
           >
             {/* Logo */}
             <motion.a
@@ -123,7 +133,19 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
             </div>
 
             {/* Right Side Buttons */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center gap-2 sm:gap-3">
+              {/* Resume Download */}
+              <motion.a
+                href={personalData.resumeLink}
+                download
+                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white text-sm font-medium rounded-full hover-glow"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Download size={16} />
+                <span>Resume</span>
+              </motion.a>
+
               {/* Theme Toggle */}
               <motion.button
                 onClick={toggleTheme}
@@ -139,18 +161,6 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                 {isDark ? <Sun size={18} /> : <Moon size={18} />}
               </motion.button>
 
-              {/* Resume Download */}
-              <motion.a
-                href={personalData.resumeLink}
-                download
-                className="hidden sm:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white text-sm font-medium rounded-full hover-glow"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Download size={16} />
-                <span>Resume</span>
-              </motion.a>
-
               {/* Mobile Menu Button */}
               <motion.button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -165,7 +175,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                 {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </motion.nav>
 
