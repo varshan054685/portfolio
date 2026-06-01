@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import LoadingScreen from '@/components/LoadingScreen';
 import CustomCursor from '@/components/CustomCursor';
-import ParticleBackground from '@/components/ParticleBackground';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -15,36 +14,18 @@ import Footer from '@/components/Footer';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isDark, setIsDark] = useState(true);
+  const isDark = true;
 
   // Handle loading completion
   const handleLoadingComplete = () => {
     setIsLoading(false);
   };
 
-  // Theme toggle handler
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
-  };
-
-  // Initialize theme from localStorage or system preference
+  // Enforce dark theme on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setIsDark(savedTheme === 'dark');
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setIsDark(prefersDark);
-      document.documentElement.classList.toggle('dark', prefersDark);
-    }
+    document.documentElement.classList.add('dark');
+    localStorage.setItem('theme', 'dark');
   }, []);
-
-  // Save theme preference
-  useEffect(() => {
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  }, [isDark]);
 
   return (
     <>
@@ -56,14 +37,11 @@ export default function Home() {
         {/* Custom Cursor */}
         <CustomCursor />
 
-        {/* Particle Background */}
-        <ParticleBackground />
-
         {/* Noise Texture Overlay */}
         <div className="noise" />
 
         {/* Navigation */}
-        <Navbar isDark={isDark} toggleTheme={toggleTheme} />
+        <Navbar isDark={isDark} />
 
         {/* Page Sections */}
         <div className={isDark ? 'text-white' : 'text-gray-900'}>

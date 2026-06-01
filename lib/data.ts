@@ -56,8 +56,8 @@ export const projects = [
     longDescription: 'A complete e-commerce solution built with the MERN stack. Features include user authentication, product catalog, shopping cart, checkout process, and admin dashboard. The application is fully responsive and optimized for performance.',
     image: '/images/ecommerce.jpg',
     tech: ['MongoDB', 'Express.js', 'React', 'Node.js'],
-    github: null,
-    live: null,
+    github: 'https://github.com/varshan054685/mern-shop',
+    live: 'https://mern-shop-flax.vercel.app/',
     featured: true,
   },
   {
@@ -68,7 +68,7 @@ export const projects = [
     image: '/images/event.jpg',
     tech: ['MongoDB', 'Express.js', 'React', 'Node.js'],
     github: 'https://github.com/varshan054685/college-event-registration',
-    live: 'https://college-event-registration-ten.vercel.app/',
+    live: 'https://college-event-registration-nine.vercel.app/',
     featured: true,
   },
   {

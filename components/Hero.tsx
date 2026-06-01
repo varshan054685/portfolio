@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Github, Linkedin, Mail, Instagram } from 'lucide-react';
 import { TbBrandWhatsapp } from 'react-icons/tb';
 import { personalData } from '@/lib/data';
+import dynamic from 'next/dynamic';
+
+const LineWaves = dynamic(() => import('./LineWaves'), { ssr: false });
 
 interface HeroProps {
   isDark: boolean;
@@ -49,60 +52,33 @@ export default function Hero({ isDark }: HeroProps) {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 animated-bg" />
-
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 grid-pattern opacity-30" />
-
-      {/* Radial gradient overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse at center, transparent 0%, rgba(10,10,10,0.8) 70%, rgba(10,10,10,1) 100%)',
-        }}
-      />
-
-      {/* Floating orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute w-96 h-96 rounded-full blur-3xl opacity-20"
-          style={{
-            background: 'linear-gradient(135deg, #00f3ff, #bc13fe)',
-            top: '10%',
-            left: '10%',
-          }}
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="absolute w-80 h-80 rounded-full blur-3xl opacity-20"
-          style={{
-            background: 'linear-gradient(135deg, #ff00ff, #00f3ff)',
-            bottom: '20%',
-            right: '10%',
-          }}
-          animate={{
-            x: [0, -40, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.15, 1],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
+      {/* LineWaves WebGL background (React Bits) */}
+      <div className="absolute inset-0 z-0 min-h-screen bg-black">
+        <LineWaves
+          speed={0.3}
+          innerLineCount={32}
+          outerLineCount={36}
+          warpIntensity={1}
+          rotation={-45}
+          edgeFadeWidth={0}
+          colorCycleSpeed={1}
+          brightness={0.2}
+          color1="#ffffff"
+          color2="#ffffff"
+          color3="#ffffff"
+          enableMouseInteraction
+          mouseInfluence={2}
         />
       </div>
+
+      {/* Light vignette so hero text stays readable */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, transparent 70%)',
+        }}
+      />
 
       {/* Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -241,9 +217,6 @@ export default function Hero({ isDark }: HeroProps) {
         </motion.button>
       </motion.div>
 
-      {/* Corner decorations */}
-      <div className="absolute top-20 left-8 w-32 h-32 border-l-2 border-t-2 border-cyan-400/20 rounded-tl-3xl" />
-      <div className="absolute bottom-20 right-8 w-32 h-32 border-r-2 border-b-2 border-purple-400/20 rounded-br-3xl" />
     </section>
   );
 }
