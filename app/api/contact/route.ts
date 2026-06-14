@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
     // Check environment variables
     const emailUser = process.env.EMAIL_USER;
     const emailPass = process.env.EMAIL_PASS;
+    const emailTo = process.env.EMAIL_TO || 'varshanrio05@gmail.com';
 
     if (!emailUser || !emailPass) {
       console.error('Missing email credentials in environment variables');
@@ -55,7 +56,7 @@ export async function POST(request: NextRequest) {
     // Email content
     const mailOptions = {
       from: emailUser,
-      to: emailUser,
+      to: emailTo,
       replyTo: email,
       subject: `Portfolio Message from ${name}`,
       text: `You received a new message from your portfolio website:
