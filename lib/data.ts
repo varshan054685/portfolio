@@ -4,7 +4,7 @@ export const personalData = {
   tagline: 'Building human-centered web experiences with passion and precision',
   description: 'Interactive and empathetic developer passionate about creating simple, human-centered designs and web solutions.',
   location: 'Coimbatore, Tamilnadu-641668',
-  email: 'varshan4685@gmail.com',
+  email: 'varshanrio05@gmail.com',
   phone: '9626949995',
   linkedin: 'https://www.linkedin.com/in/varshan-k-v005',
   github: 'https://github.com/varshan054685',
