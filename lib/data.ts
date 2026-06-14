@@ -15,25 +15,69 @@ export const personalData = {
 
 
 export const skills = {
-  technical: [
-    { name: 'HTML5', icon: 'Code2', level: 90, color: '#e34c26' },
-    { name: 'CSS3', icon: 'Palette', level: 85, color: '#264de4' },
-    { name: 'JavaScript', icon: 'FileJson', level: 80, color: '#f7df1e' },
-    { name: 'React.js', icon: 'Atom', level: 78, color: '#61dafb' },
-    { name: 'Node.js', icon: 'Server', level: 75, color: '#339933' },
-    { name: 'MongoDB', icon: 'Database', level: 70, color: '#47a248' },
-    { name: 'Express.js', icon: 'Globe', level: 72, color: '#ffffff' },
-    { name: 'PostgreSQL', icon: 'Database', level: 65, color: '#336791' },
-    { name: 'Tailwind CSS', icon: 'Wind', level: 88, color: '#06b6d4' },
-    { name: 'Git & GitHub', icon: 'GitBranch', level: 80, color: '#f05032' },
+  categories: [
+    {
+      title: 'Frontend Development',
+      skills: [
+        { name: 'HTML5', icon: 'Code2', color: '#e34c26', description: 'Used to structure web content and ensure accessibility across devices.' },
+        { name: 'CSS3', icon: 'Palette', color: '#264de4', description: 'Used to create responsive layouts and visually appealing designs.' },
+        { name: 'JavaScript', icon: 'FileJson', color: '#f7df1e', description: 'Used to implement complex features and interactive elements.' },
+        { name: 'React.js', icon: 'Atom', color: '#61dafb', description: 'Used to build interactive dashboards, SPAs, and reusable UI components.' },
+      ],
+    },
+    {
+      title: 'Backend Development',
+      skills: [
+        { name: 'Node.js', icon: 'Server', color: '#339933', description: 'Used to create REST APIs, authentication systems, and backend services.' },
+        { name: 'Express.js', icon: 'Globe', color: '#ffffff', description: 'Used to build robust web applications and scalable API endpoints.' },
+      ],
+    },
+    {
+      title: 'Databases',
+      skills: [
+        { name: 'MongoDB', icon: 'Database', color: '#47a248', description: 'Used for flexible, document-oriented data storage and management.' },
+        { name: 'PostgreSQL', icon: 'Database', color: '#336791', description: 'Used for reliable relational data storage with complex querying.' },
+      ],
+    },
+    {
+      title: 'UI/UX & Styling',
+      skills: [
+        { name: 'Tailwind CSS', icon: 'Wind', color: '#06b6d4', description: 'Used for rapid UI development with a utility-first approach.' },
+      ],
+    },
+    {
+      title: 'Tools & DevOps',
+      skills: [
+        { name: 'Git & GitHub', icon: 'GitBranch', color: '#f05032', description: 'Used for version control and collaborative development.' },
+      ],
+    },
   ],
-  soft: [
-    { name: 'Communication', icon: 'MessageCircle' },
-    { name: 'Teamwork', icon: 'Users' },
-    { name: 'Collaboration', icon: 'Handshake' },
-    { name: 'Time Management', icon: 'Clock' },
-    { name: 'Empathy', icon: 'Heart' },
-    { name: 'Problem Solving', icon: 'Lightbulb' },
+  workApproach: [
+    {
+      title: 'Collaboration',
+      description: 'Active communicator in team environments, focusing on code reviews and shared project goals.',
+      icon: 'Users',
+    },
+    {
+      title: 'Coding Principles',
+      description: 'Committed to writing clean, maintainable, and DRY code with a focus on scalable architecture.',
+      icon: 'Code2',
+    },
+    {
+      title: 'Problem-Solving',
+      description: 'Approaching complex challenges with a systematic debugging process and architectural thinking.',
+      icon: 'Lightbulb',
+    },
+    {
+      title: 'Learning Mindset',
+      description: 'Continuously expanding my tech stack and staying updated with industry best practices.',
+      icon: 'TrendingUp',
+    },
+  ],
+  currentlyLearning: [
+    { name: 'System Design basics', icon: 'Layout' },
+    { name: 'Advanced React patterns', icon: 'Atom' },
+    { name: 'Backend scalability concepts', icon: 'Server' },
   ],
 };
 
