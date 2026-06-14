@@ -12,12 +12,15 @@ import {
   Globe,
   Wind,
   GitBranch,
-  MessageCircle,
   Users,
   Handshake,
   Clock,
   Heart,
   Lightbulb,
+  TrendingUp,
+  Layout,
+  CheckCircle2,
+  ArrowRight,
 } from 'lucide-react';
 
 interface SkillsProps {
@@ -34,12 +37,13 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Globe,
   Wind,
   GitBranch,
-  MessageCircle,
   Users,
   Handshake,
   Clock,
   Heart,
   Lightbulb,
+  TrendingUp,
+  Layout,
 };
 
 export default function Skills({ isDark }: SkillsProps) {
@@ -58,62 +62,104 @@ export default function Skills({ isDark }: SkillsProps) {
           className="text-center mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium bg-purple-500/10 text-purple-400 mb-4">
-            My Skills
+            Expertise
           </span>
           <h2 className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-            Technical <span className="gradient-text">Expertise</span>
+            Skills & <span className="gradient-text">Approach</span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full" />
         </motion.div>
 
+        {/* Technical Skills Categorized */}
+        <div className="space-y-16 mb-24">
+          {skills.categories.map((category, catIndex) => (
+            <motion.div
+              key={category.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.6, delay: catIndex * 0.1 }}
+            >
+              <h3 className={`text-2xl font-bold mb-8 flex items-center gap-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                <span className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-sm">
+                  0{catIndex + 1}
+                </span>
+                {category.title}
+              </h3>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {category.skills.map((skill, index) => {
+                  const Icon = iconMap[skill.icon] || Code2;
+                  return (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.05 * index }}
+                      whileHover={{ y: -5 }}
+                      className={`p-6 rounded-2xl border ${
+                        isDark
+                          ? 'bg-white/5 border-white/10 hover:border-cyan-500/50'
+                          : 'bg-gray-50 border-gray-200 hover:border-cyan-500/50'
+                      } transition-all group`}
+                    >
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
+                        style={{ backgroundColor: `${skill.color}15`, color: skill.color }}
+                      >
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <h4 className={`text-lg font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                        {skill.name}
+                      </h4>
+                      <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                        {skill.description}
+                      </p>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Technical Skills */}
+          {/* Work Approach */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6 }}
           >
             <h3 className={`text-2xl font-bold mb-8 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              Technical Skills
+              Work Approach
             </h3>
-            <div className="space-y-5">
-              {skills.technical.map((skill, index) => {
-                const Icon = iconMap[skill.icon] || Code2;
+            <div className="space-y-4">
+              {skills.workApproach.map((item, index) => {
+                const Icon = iconMap[item.icon] || CheckCircle2;
                 return (
                   <motion.div
-                    key={skill.name}
+                    key={item.title}
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 * index }}
-                    className="group"
+                    className={`p-5 rounded-xl border ${
+                      isDark ? 'bg-white/5 border-white/10' : 'bg-gray-50 border-gray-200'
+                    }`}
                   >
-                    <div className="flex items-center gap-4 mb-2">
-                      <div
-                        className="w-10 h-10 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110"
-                        style={{ backgroundColor: `${skill.color}20`, color: skill.color }}
-                      >
+                    <div className="flex gap-4">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <span className={`font-medium flex-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                        {skill.name}
-                      </span>
-                      <span className="text-sm text-cyan-400 font-mono">{skill.level}%</span>
-                    </div>
-                    <div className={`h-2 rounded-full overflow-hidden ${isDark ? 'bg-white/10' : 'bg-gray-200'}`}>
-                      <motion.div
-                        className="h-full rounded-full relative overflow-hidden"
-                        style={{
-                          background: `linear-gradient(90deg, ${skill.color}, ${skill.color}aa)`,
-                        }}
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.2 + index * 0.1, ease: 'easeOut' }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
-                      </motion.div>
+                      <div>
+                        <h4 className={`font-bold mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                          {item.title}
+                        </h4>
+                        <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
                   </motion.div>
                 );
@@ -121,78 +167,60 @@ export default function Skills({ isDark }: SkillsProps) {
             </div>
           </motion.div>
 
-          {/* Soft Skills */}
+          {/* Tech Growth / Currently Learning */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6 }}
           >
             <h3 className={`text-2xl font-bold mb-8 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-              Soft Skills
+              Tech Growth
             </h3>
-            <div className="grid grid-cols-2 gap-4">
-              {skills.soft.map((skill, index) => {
-                const Icon = iconMap[skill.icon] || Heart;
-                return (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.1 * index }}
-                    whileHover={{ scale: 1.05, y: -5 }}
-                    className={`p-5 rounded-xl ${isDark ? 'glass-dark' : 'glass bg-white/50'} group cursor-pointer`}
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center mb-3 group-hover:from-cyan-500/30 group-hover:to-purple-500/30 transition-all">
-                      <Icon className="w-6 h-6 text-cyan-400" />
-                    </div>
-                    <h4 className={`font-semibold ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                      {skill.name}
-                    </h4>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            {/* Tech Stack Tags */}
-            <div className="mt-8">
-              <h4 className={`text-lg font-semibold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                Tech Stack
+            <div className={`p-8 rounded-2xl border ${
+              isDark ? 'bg-gradient-to-br from-cyan-500/5 to-purple-500/5 border-white/10' : 'bg-gray-50 border-gray-200'
+            }`}>
+              <p className={`mb-6 italic ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                "The beautiful thing about learning is that no one can take it away from you."
+              </p>
+              <h4 className={`font-semibold mb-4 flex items-center gap-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                <TrendingUp className="w-5 h-5 text-cyan-400" />
+                Currently Learning
               </h4>
-              <div className="flex flex-wrap gap-2">
-                {['MERN', 'PERN', 'REST APIs', 'Responsive Design', 'Git Workflow', 'UI/UX'].map((tag, index) => (
-                  <motion.span
-                    key={tag}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: 0.05 * index }}
-                    whileHover={{ scale: 1.1 }}
-                    className="px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r from-cyan-500/10 to-purple-500/10 text-cyan-400 border border-cyan-500/20"
-                  >
-                    {tag}
-                  </motion.span>
-                ))}
+              <ul className="space-y-4">
+                {skills.currentlyLearning.map((item, index) => {
+                  const Icon = iconMap[item.icon] || Code2;
+                  return (
+                    <motion.li
+                      key={item.name}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.1 * index }}
+                      className="flex items-center gap-3"
+                    >
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                        isDark ? 'bg-white/10' : 'bg-white shadow-sm'
+                      }`}>
+                        <Icon className="w-4 h-4 text-cyan-400" />
+                      </div>
+                      <span className={`${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{item.name}</span>
+                      <ArrowRight className="w-4 h-4 ml-auto text-gray-500 opacity-50" />
+                    </motion.li>
+                  );
+                })}
+              </ul>
+
+              <div className="mt-10 p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/20">
+                <p className="text-xs text-cyan-400 font-medium uppercase tracking-wider mb-2">Learning Philosophy</p>
+                <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                  Focusing on mastering the fundamentals while exploring modern patterns to build scalable and efficient systems.
+                </p>
               </div>
             </div>
           </motion.div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-        .animate-shimmer {
-          animation: shimmer 2s infinite;
-        }
-      `}</style>
     </section>
   );
 }
