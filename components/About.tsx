@@ -62,7 +62,7 @@ export default function About({ isDark }: AboutProps) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
+            className="relative overflow-hidden"
           >
             <div className="relative">
               {/* Main visual */}
@@ -86,14 +86,14 @@ export default function About({ isDark }: AboutProps) {
 
               {/* Floating badges */}
               <motion.div
-                className={`absolute -top-4 -right-4 px-4 py-2 rounded-full text-sm font-medium ${isDark ? 'glass-dark' : 'glass bg-white/80'} text-cyan-400`}
+                className={`absolute -top-4 right-0 px-4 py-2 rounded-full text-sm font-medium ${isDark ? 'glass-dark' : 'glass bg-white/80'} text-cyan-400`}
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
                 💻 Developer
               </motion.div>
               <motion.div
-                className={`absolute -bottom-4 -left-4 px-4 py-2 rounded-full text-sm font-medium ${isDark ? 'glass-dark' : 'glass bg-white/80'} text-purple-400`}
+                className={`absolute -bottom-4 left-0 px-4 py-2 rounded-full text-sm font-medium ${isDark ? 'glass-dark' : 'glass bg-white/80'} text-purple-400`}
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1 }}
               >

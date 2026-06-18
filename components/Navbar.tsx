@@ -160,7 +160,7 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
 
             {/* Menu Content */}
             <motion.div
-              className="absolute top-16 left-4 right-4 p-6 rounded-2xl shadow-2xl bg-[#0a0a0a]/95 border border-white/10"
+              className="fixed top-16 left-4 right-4 z-[60] p-6 rounded-2xl shadow-2xl bg-[#0a0a0a]/95 border border-white/10"
               initial={{ opacity: 0, y: -20, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}

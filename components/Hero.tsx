@@ -53,7 +53,7 @@ export default function Hero({ isDark }: HeroProps) {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* LineWaves WebGL background (React Bits) */}
-      <div className="absolute inset-0 z-0 min-h-screen bg-black">
+      <div className="absolute inset-0 z-0 min-h-screen bg-black overflow-hidden">
         <LineWaves
           speed={0.3}
           innerLineCount={32}
