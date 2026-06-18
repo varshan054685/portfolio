@@ -33,7 +33,7 @@ export default function Home() {
       {isLoading && <LoadingScreen onLoadingComplete={handleLoadingComplete} />}
 
       {/* Main Content */}
-      <main className={`${isLoading ? 'hidden' : 'block'} ${isDark ? 'dark' : ''}`}>
+      <div className={`bg-gray-950 ${isLoading ? 'hidden' : 'block'} ${isDark ? 'dark' : ''}`}>
         {/* Custom Cursor */}
         <CustomCursor />
 
@@ -44,7 +44,7 @@ export default function Home() {
         <Navbar isDark={isDark} />
 
         {/* Page Sections */}
-        <div className={isDark ? 'text-white' : 'text-gray-900'}>
+        <main className={isDark ? 'text-white' : 'text-gray-900'}>
           <Hero isDark={isDark} />
           <About isDark={isDark} />
           <Skills isDark={isDark} />
@@ -52,8 +52,8 @@ export default function Home() {
           <Experience isDark={isDark} />
           <Contact isDark={isDark} />
           <Footer isDark={isDark} />
-        </div>
-      </main>
+        </main>
+      </div>
     </>
   );
 }
