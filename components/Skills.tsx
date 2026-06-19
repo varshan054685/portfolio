@@ -47,6 +47,28 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 export default function Skills({ isDark }: SkillsProps) {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        ease: 'easeOut',
+      },
+    },
+  };
+
   return (
     <section
       id="skills"
@@ -75,10 +97,10 @@ export default function Skills({ isDark }: SkillsProps) {
           {skills.categories.map((category, catIndex) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6, delay: catIndex * 0.1 }}
+              variants={containerVariants}
             >
               <h3 className={`text-2xl font-bold mb-8 flex items-center gap-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                 <span className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-sm">
@@ -87,42 +109,50 @@ export default function Skills({ isDark }: SkillsProps) {
                 {category.title}
               </h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {category.skills.map((skill, index) => {
+                {category.skills.map((skill) => {
                   return (
                     <motion.div
                       key={skill.name}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: 0.05 * index }}
-                      whileHover={{ y: -5 }}
-                      className={`p-6 rounded-2xl border ${
+                      variants={itemVariants}
+                      whileHover={{
+                        y: -8,
+                        transition: { duration: 0.3, ease: 'easeOut' }
+                      }}
+                      className={`p-6 rounded-2xl border transition-all duration-300 group relative overflow-hidden ${
                         isDark
-                          ? 'bg-white/5 border-white/10 hover:border-cyan-500/50'
-                          : 'bg-gray-50 border-gray-200 hover:border-cyan-500/50'
-                      } transition-all group`}
+                          ? 'bg-white/[0.03] border-white/10 hover:border-cyan-500/50 hover:bg-white/[0.06]'
+                          : 'bg-gray-50 border-gray-200 hover:border-cyan-500/50 hover:bg-white shadow-sm hover:shadow-md'
+                      }`}
                     >
+                      {/* Glow effect on hover */}
                       <div
-                        className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 p-2.5 relative overflow-hidden"
-                        style={{ backgroundColor: `${skill.color}15` }}
+                        className="absolute -inset-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 pointer-events-none"
+                        style={{
+                          background: `radial-gradient(circle at center, ${skill.color}20 0%, transparent 70%)`
+                        }}
+                      />
+
+                      <div
+                        className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-500 group-hover:scale-110 p-2.5 relative overflow-hidden"
+                        style={{ backgroundColor: `${skill.color}20` }}
                       >
                         <div
-                          className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                          className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500"
                           style={{ backgroundColor: skill.color }}
                         />
                         <img
                           src={skill.icon}
                           alt={skill.name}
-                          className="w-9 h-9 object-contain z-10 transition-all duration-300 filter grayscale group-hover:grayscale-0"
+                          className="w-9 h-9 object-contain z-10 transition-all duration-500 filter grayscale-[0.3] group-hover:grayscale-0 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg';
                           }}
                         />
                       </div>
-                      <h4 className={`text-lg font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                      <h4 className={`text-lg font-bold mb-2 transition-colors duration-300 ${isDark ? 'text-white' : 'text-gray-900'} group-hover:text-cyan-400`}>
                         {skill.name}
                       </h4>
-                      <p className={`text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                      <p className={`text-sm leading-relaxed transition-colors duration-300 ${isDark ? 'text-gray-400' : 'text-gray-600'} group-hover:text-gray-300`}>
                         {skill.description}
                       </p>
                     </motion.div>

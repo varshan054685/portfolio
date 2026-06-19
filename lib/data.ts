@@ -130,6 +130,17 @@ export const projects = [
     live: 'https://automatic-time-table-scheduler.vercel.app/',
     featured: true,
   },
+  {
+    id: 5,
+    title: 'Personal Portfolio',
+    description: 'Professional portfolio website showcasing skills, projects, and experience with a modern UI.',
+    longDescription: 'A high-performance personal portfolio built with Next.js and TypeScript. Features smooth animations with Framer Motion, responsive design with Tailwind CSS, and centralized data management for easy updates.',
+    image: '/images/portfolio.jpg',
+    tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    github: 'https://github.com/varshan054685/portfolio',
+    live: 'https://varshan-portfolio.vercel.app',
+    featured: true,
+  },
 ];
 
 export const experience = [
