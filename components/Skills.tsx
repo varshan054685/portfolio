@@ -88,7 +88,6 @@ export default function Skills({ isDark }: SkillsProps) {
               </h3>
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {category.skills.map((skill, index) => {
-                  const Icon = iconMap[skill.icon] || Code2;
                   return (
                     <motion.div
                       key={skill.name}
@@ -104,10 +103,21 @@ export default function Skills({ isDark }: SkillsProps) {
                       } transition-all group`}
                     >
                       <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
-                        style={{ backgroundColor: `${skill.color}15`, color: skill.color }}
+                        className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 p-2.5 relative overflow-hidden"
+                        style={{ backgroundColor: `${skill.color}15` }}
                       >
-                        <Icon className="w-6 h-6" />
+                        <div
+                          className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                          style={{ backgroundColor: skill.color }}
+                        />
+                        <img
+                          src={skill.icon}
+                          alt={skill.name}
+                          className="w-9 h-9 object-contain z-10 transition-all duration-300 filter grayscale group-hover:grayscale-0"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg';
+                          }}
+                        />
                       </div>
                       <h4 className={`text-lg font-bold mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                         {skill.name}
