@@ -1,6 +1,6 @@
 export const personalData = {
   name: 'Varshan K',
-  title: 'B.Com (IT) Student | Full Stack Developer',
+  title: 'Full Stack Developer',
   tagline: 'Building human-centered web experiences with passion and precision',
   description: 'Interactive and empathetic developer passionate about creating simple, human-centered designs and web solutions.',
   location: 'Coimbatore, Tamilnadu-641668',

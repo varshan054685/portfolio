@@ -13,7 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Varshan K | Full Stack Developer & B.Com (IT) Student',
+  title: 'Varshan K | Full Stack Developer',
   description: 'Portfolio of Varshan K, a passionate full stack developer specializing in React.js, MERN/PERN stack, and creating human-centered web solutions.',
   keywords: ['Varshan K', 'full stack developer', 'React.js', 'Next.js', 'TailwindCSS', 'MERN stack', 'portfolio', 'web developer'],
   authors: [{ name: 'Varshan K' }],

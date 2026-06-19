@@ -109,6 +109,7 @@ export default function Experience({ isDark }: ExperienceProps) {
 
           {/* Education */}
           <motion.div
+            id="education"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}

@@ -20,16 +20,22 @@ export default function Hero({ isDark }: HeroProps) {
 
   useEffect(() => {
     let index = 0;
-    const interval = setInterval(() => {
-      if (index <= fullText.length) {
-        setDisplayText(fullText.slice(0, index));
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 50);
+    let interval: NodeJS.Timeout;
+    const startTyping = setTimeout(() => {
+      interval = setInterval(() => {
+        if (index <= fullText.length) {
+          setDisplayText(fullText.slice(0, index));
+          index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 50);
+    }, 1400);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(startTyping);
+      clearInterval(interval);
+    };
   }, [fullText]);
 
   useEffect(() => {
@@ -48,9 +54,12 @@ export default function Hero({ isDark }: HeroProps) {
   };
 
   return (
-    <section
+    <motion.section
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      initial={{ opacity: 0, y: 30, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* LineWaves WebGL background (React Bits) */}
       <div className="absolute inset-0 z-0 min-h-screen bg-black overflow-hidden">
@@ -86,7 +95,7 @@ export default function Hero({ isDark }: HeroProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
           className="mb-6"
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-cyan-400">
@@ -99,7 +108,7 @@ export default function Hero({ isDark }: HeroProps) {
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-4"
         >
           <span className="gradient-text">{personalData.name.split(' ')[0]}</span>
@@ -112,7 +121,7 @@ export default function Hero({ isDark }: HeroProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.7, delay: 1.0, ease: 'easeOut' }}
           className="mb-6"
         >
           <p className={`text-xl sm:text-2xl md:text-3xl font-light font-mono ${isDark ? 'text-white' : 'text-gray-800'}`}>
@@ -129,7 +138,7 @@ export default function Hero({ isDark }: HeroProps) {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          transition={{ duration: 0.7, delay: 2.0, ease: 'easeOut' }}
           className={`text-lg sm:text-xl max-w-2xl mx-auto mb-10 ${isDark ? 'text-white/90' : 'text-gray-700'}`}
         >
           {personalData.tagline}
@@ -139,7 +148,7 @@ export default function Hero({ isDark }: HeroProps) {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
+          transition={{ duration: 0.7, delay: 2.4, ease: 'easeOut' }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
           <motion.a
@@ -174,7 +183,7 @@ export default function Hero({ isDark }: HeroProps) {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
+          transition={{ duration: 0.8, delay: 2.8, ease: 'easeOut' }}
           className="flex items-center justify-center gap-6"
         >
           {[
@@ -204,7 +213,7 @@ export default function Hero({ isDark }: HeroProps) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+        transition={{ delay: 3.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.button
@@ -217,6 +226,6 @@ export default function Hero({ isDark }: HeroProps) {
         </motion.button>
       </motion.div>
 
-    </section>
+    </motion.section>
   );
 }

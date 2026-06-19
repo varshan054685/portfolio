@@ -46,7 +46,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
         clearInterval(timer);
         setTimeout(() => {
           setIsExiting(true);
-          setTimeout(onLoadingComplete, 800);
+          setTimeout(onLoadingComplete, 1000);
         }, 300);
       }
     }, interval);
@@ -64,10 +64,10 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
           }}
           exit={{
             opacity: 0,
-            scale: 1.1,
+            scale: 1.05,
             filter: 'blur(20px)',
           }}
-          transition={{ duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] }}
+          transition={{ duration: 0.9, ease: [0.43, 0.13, 0.23, 0.96] }}
         >
           {/* Animated background particles - only render on client */}
           <div className="absolute inset-0 overflow-hidden">

@@ -62,11 +62,11 @@ export default function About({ isDark }: AboutProps) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative overflow-hidden"
+            className="relative"
           >
-            <div className="relative">
+            <div className="relative py-6 px-6">
               {/* Main visual */}
-              <div className="relative aspect-square max-w-md mx-auto">
+              <div className="relative aspect-square max-w-md mx-auto overflow-hidden rounded-3xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-3xl transform rotate-6" />
                 <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-3xl transform -rotate-3" />
                 <div className={`relative rounded-3xl p-8 ${isDark ? 'glass-dark' : 'glass bg-white/50'} flex items-center justify-center`}>
@@ -86,16 +86,16 @@ export default function About({ isDark }: AboutProps) {
 
               {/* Floating badges */}
               <motion.div
-                className={`absolute -top-4 right-0 px-4 py-2 rounded-full text-sm font-medium ${isDark ? 'glass-dark' : 'glass bg-white/80'} text-cyan-400`}
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
+                className={`absolute top-0 right-4 px-4 py-2 rounded-full text-sm font-medium ${isDark ? 'glass-dark' : 'glass bg-white/80'} text-cyan-400`}
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
               >
                 💻 Developer
               </motion.div>
               <motion.div
-                className={`absolute -bottom-4 left-0 px-4 py-2 rounded-full text-sm font-medium ${isDark ? 'glass-dark' : 'glass bg-white/80'} text-purple-400`}
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                className={`absolute bottom-0 left-4 px-4 py-2 rounded-full text-sm font-medium ${isDark ? 'glass-dark' : 'glass bg-white/80'} text-purple-400`}
+                animate={{ y: [0, 8, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
               >
                 🎨 Designer
               </motion.div>
@@ -111,7 +111,7 @@ export default function About({ isDark }: AboutProps) {
           >
             <div className={`space-y-6 text-lg ${isDark ? 'text-white/70' : 'text-gray-600'}`}>
               <p>
-                I&apos;m a <span className="text-cyan-400 font-medium">B.Com (Information Technology)</span> student with a passion for front-end development and creating user-friendly web experiences. My approach to development combines technical skills with empathy and collaboration.
+                I&apos;m a <span className="text-cyan-400 font-medium">Full Stack Developer</span> with a passion for front-end development and creating user-friendly web experiences. My approach to development combines technical skills with empathy and collaboration.
               </p>
               <p>
                 I believe in creating <span className="text-purple-400 font-medium">simple, human-centered designs</span> that solve real problems. I&apos;m eager to contribute to ethical projects that make a positive impact on people&apos;s lives.
