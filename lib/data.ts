@@ -19,36 +19,40 @@ export const skills = {
     {
       title: 'Frontend Development',
       skills: [
-        { name: 'HTML5', icon: 'Code2', color: '#e34c26', description: 'Used to structure web content and ensure accessibility across devices.' },
-        { name: 'CSS3', icon: 'Palette', color: '#264de4', description: 'Used to create responsive layouts and visually appealing designs.' },
-        { name: 'JavaScript', icon: 'FileJson', color: '#f7df1e', description: 'Used to implement complex features and interactive elements.' },
-        { name: 'React.js', icon: 'Atom', color: '#61dafb', description: 'Used to build interactive dashboards, SPAs, and reusable UI components.' },
+        { name: 'HTML5', icon: '/icons/skills/html5.svg', color: '#e34c26', description: 'Used to structure web content and ensure accessibility across devices.' },
+        { name: 'CSS3', icon: '/icons/skills/css3.svg', color: '#264de4', description: 'Used to create responsive layouts and visually appealing designs.' },
+        { name: 'JavaScript', icon: '/icons/skills/javascript.svg', color: '#f7df1e', description: 'Used to implement complex features and interactive elements.' },
+        { name: 'TypeScript', icon: '/icons/skills/typescript.svg', color: '#3178c6', description: 'Used to add static typing and improve code quality in large-scale applications.' },
+        { name: 'React.js', icon: '/icons/skills/react.svg', color: '#61dafb', description: 'Used to build interactive dashboards, SPAs, and reusable UI components.' },
       ],
     },
     {
       title: 'Backend Development',
       skills: [
-        { name: 'Node.js', icon: 'Server', color: '#339933', description: 'Used to create REST APIs, authentication systems, and backend services.' },
-        { name: 'Express.js', icon: 'Globe', color: '#ffffff', description: 'Used to build robust web applications and scalable API endpoints.' },
+        { name: 'Node.js', icon: '/icons/skills/nodejs.svg', color: '#339933', description: 'Used to create REST APIs, authentication systems, and backend services.' },
+        { name: 'Express.js', icon: '/icons/skills/express.svg', color: '#ffffff', description: 'Used to build robust web applications and scalable API endpoints.' },
+        { name: 'Python', icon: '/icons/skills/python.svg', color: '#3776ab', description: 'Used for backend logic, data processing, and AI/ML integrations.' },
       ],
     },
     {
       title: 'Databases',
       skills: [
-        { name: 'MongoDB', icon: 'Database', color: '#47a248', description: 'Used for flexible, document-oriented data storage and management.' },
-        { name: 'PostgreSQL', icon: 'Database', color: '#336791', description: 'Used for reliable relational data storage with complex querying.' },
+        { name: 'MongoDB', icon: '/icons/skills/mongodb.svg', color: '#47a248', description: 'Used for flexible, document-oriented data storage and management.' },
+        { name: 'PostgreSQL', icon: '/icons/skills/postgresql.svg', color: '#336791', description: 'Used for reliable relational data storage with complex querying.' },
       ],
     },
     {
       title: 'UI/UX & Styling',
       skills: [
-        { name: 'Tailwind CSS', icon: 'Wind', color: '#06b6d4', description: 'Used for rapid UI development with a utility-first approach.' },
+        { name: 'Tailwind CSS', icon: '/icons/skills/tailwindcss.svg', color: '#06b6d4', description: 'Used for rapid UI development with a utility-first approach.' },
+        { name: 'MUI', icon: '/icons/skills/materialui.svg', color: '#007fff', description: 'Used for building professional-grade UI with pre-designed React components.' },
       ],
     },
     {
       title: 'Tools & DevOps',
       skills: [
-        { name: 'Git & GitHub', icon: 'GitBranch', color: '#f05032', description: 'Used for version control and collaborative development.' },
+        { name: 'Git', icon: '/icons/skills/git.svg', color: '#f05032', description: 'Used for version control and collaborative development.' },
+        { name: 'GitHub', icon: '/icons/skills/github.svg', color: '#ffffff', description: 'Used for hosting repositories and managing CI/CD workflows.' },
       ],
     },
   ],
