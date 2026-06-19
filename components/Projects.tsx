@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '@/lib/data';
 import { Github, ExternalLink, X, ChevronRight, Code2 } from 'lucide-react';
@@ -16,6 +17,7 @@ const projectGradients = [
   { from: '#f97316', to: '#dc2626', letter: 'E' }, // Event Registration - orange to red
   { from: '#ec4899', to: '#be123c', letter: 'A' }, // Time-Table Scheduler - pink to rose
   { from: '#00f3ff', to: '#bc13fe', letter: 'P' }, // Portfolio - cyan to purple
+  { from: '#8b5cf6', to: '#3b82f6', letter: 'L' }, // Lumina - violet to blue
 ];
 
 export default function Projects({ isDark }: ProjectsProps) {
@@ -69,26 +71,37 @@ export default function Projects({ isDark }: ProjectsProps) {
                 }`}
                 onClick={() => openModal(project, index)}
               >
-                {/* Gradient Header with Letter */}
+                {/* Header Image or Gradient */}
                 <div
-                  className="relative h-40 overflow-hidden"
+                  className="relative h-48 sm:h-56 overflow-hidden"
                   style={{
-                    background: `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
+                    background: project.image ? '#000' : `linear-gradient(135deg, ${gradient.from}, ${gradient.to})`,
                   }}
                 >
+                  {project.image && (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  )}
+
                   {/* Featured Badge */}
                   {project.featured && (
-                    <span className="absolute top-3 right-3 px-3 py-1 text-xs font-medium rounded-full bg-white/20 text-white backdrop-blur-sm">
+                    <span className="absolute top-3 right-3 px-3 py-1 text-xs font-medium rounded-full bg-black/50 text-white backdrop-blur-md border border-white/10 z-10">
                       Featured
                     </span>
                   )}
                   
                   {/* Large Letter */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-8xl font-bold text-white/20 select-none">
-                      {gradient.letter}
-                    </span>
-                  </div>
+                  {!project.image && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-8xl font-bold text-white/20 select-none">
+                        {gradient.letter}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content */}
@@ -165,19 +178,30 @@ export default function Projects({ isDark }: ProjectsProps) {
                 <X size={18} className="text-white/80" />
               </button>
 
-              {/* Modal Gradient Header */}
+              {/* Modal Header Image or Gradient */}
               <div
-                className="relative h-44 overflow-hidden"
+                className="relative h-56 sm:h-72 overflow-hidden"
                 style={{
-                  background: `linear-gradient(135deg, ${projectGradients[selectedIndex].from}, ${projectGradients[selectedIndex].to})`,
+                  background: selectedProject.image ? '#000' : `linear-gradient(135deg, ${projectGradients[selectedIndex].from}, ${projectGradients[selectedIndex].to})`,
                 }}
               >
+                {selectedProject.image && (
+                  <Image
+                    src={selectedProject.image}
+                    alt={selectedProject.title}
+                    fill
+                    className="object-cover"
+                  />
+                )}
+
                 {/* Large Letter */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-9xl font-bold text-white/20 select-none">
-                    {projectGradients[selectedIndex].letter}
-                  </span>
-                </div>
+                {!selectedProject.image && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-9xl font-bold text-white/20 select-none">
+                      {projectGradients[selectedIndex].letter}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Modal Content */}
