@@ -15,8 +15,7 @@ const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Experience', href: '#experience' },
-  { name: 'Education', href: '#education' },
+  { name: 'Journey', href: '#education' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -58,9 +57,8 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'py-1.5 sm:py-2' : 'py-2 sm:py-3'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-1.5 sm:py-2' : 'py-2 sm:py-3'
+          }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
@@ -94,11 +92,10 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                     e.preventDefault();
                     handleNavClick(link.href);
                   }}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors ${
-                    activeSection === link.href.slice(1)
+                  className={`relative px-4 py-2 text-sm font-medium transition-colors ${activeSection === link.href.slice(1)
                       ? 'text-white'
                       : 'text-white/50 hover:text-white/80'
-                  }`}
+                    }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -175,11 +172,10 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
                       e.preventDefault();
                       handleNavClick(link.href);
                     }}
-                    className={`px-4 py-3 rounded-xl text-base font-medium transition-colors ${
-                      activeSection === link.href.slice(1)
+                    className={`px-4 py-3 rounded-xl text-base font-medium transition-colors ${activeSection === link.href.slice(1)
                         ? 'bg-white/10 text-white'
                         : 'text-white/60 hover:bg-white/5 hover:text-white'
-                    }`}
+                      }`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}

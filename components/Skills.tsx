@@ -1,26 +1,22 @@
 'use client';
 
-import { motion, Variants } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 import { skills } from '@/lib/data';
 import {
   Code2,
-  Palette,
-  FileJson,
   Atom,
   Server,
-  Database,
-  Globe,
-  Wind,
-  GitBranch,
   Users,
-  Handshake,
-  Clock,
-  Heart,
   Lightbulb,
   TrendingUp,
   Layout,
   CheckCircle2,
   ArrowRight,
+  Monitor,
+  Database,
+  Paintbrush,
+  Wrench,
 } from 'lucide-react';
 
 interface SkillsProps {
@@ -28,46 +24,55 @@ interface SkillsProps {
 }
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Code2,
-  Palette,
-  FileJson,
-  Atom,
-  Server,
-  Database,
-  Globe,
-  Wind,
-  GitBranch,
-  Users,
-  Handshake,
-  Clock,
-  Heart,
-  Lightbulb,
-  TrendingUp,
-  Layout,
+  Code2, Atom, Server, Users, Lightbulb, TrendingUp, Layout,
+};
+
+// Tab config — icon + color per category
+const tabConfig: Record<string, {
+  icon: React.ComponentType<{ className?: string }>;
+  color: string;
+  glow: string;
+  bg: string;
+}> = {
+  'Frontend Development': {
+    icon: Monitor,
+    color: '#00f3ff',
+    glow: 'rgba(0,243,255,0.4)',
+    bg: 'rgba(0,243,255,0.07)',
+  },
+  'Backend Development': {
+    icon: Server,
+    color: '#bc13fe',
+    glow: 'rgba(188,19,254,0.4)',
+    bg: 'rgba(188,19,254,0.07)',
+  },
+  'Databases': {
+    icon: Database,
+    color: '#00ff88',
+    glow: 'rgba(0,255,136,0.4)',
+    bg: 'rgba(0,255,136,0.07)',
+  },
+  'UI/UX & Styling': {
+    icon: Paintbrush,
+    color: '#ff00ff',
+    glow: 'rgba(255,0,255,0.4)',
+    bg: 'rgba(255,0,255,0.07)',
+  },
+  'Tools & DevOps': {
+    icon: Wrench,
+    color: '#f7df1e',
+    glow: 'rgba(247,223,30,0.4)',
+    bg: 'rgba(247,223,30,0.07)',
+  },
 };
 
 export default function Skills({ isDark }: SkillsProps) {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+  const [activeTab, setActiveTab] = useState(skills.categories[0].title);
 
-  const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: 'easeOut',
-      },
-    },
-  };
+  const activeCategory = skills.categories.find((c) => c.title === activeTab)!;
+  const activeCfg = tabConfig[activeTab];
+
+  // cardVariants kept for reference but not used as Variants type
 
   return (
     <section
@@ -75,6 +80,7 @@ export default function Skills({ isDark }: SkillsProps) {
       className={`relative py-24 md:py-32 ${isDark ? 'bg-dark-200' : 'bg-white'}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -92,78 +98,150 @@ export default function Skills({ isDark }: SkillsProps) {
           <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto rounded-full" />
         </motion.div>
 
-        {/* Technical Skills Categorized */}
-        <div className="space-y-16 mb-24">
-          {skills.categories.map((category, catIndex) => (
-            <motion.div
-              key={category.title}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-              variants={containerVariants}
-            >
-              <h3 className={`text-2xl font-bold mb-8 flex items-center gap-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                <span className="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-sm">
-                  0{catIndex + 1}
-                </span>
-                {category.title}
-              </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {category.skills.map((skill) => {
-                  return (
-                    <motion.div
-                      key={skill.name}
-                      variants={itemVariants}
-                      whileHover={{
-                        y: -8,
-                        transition: { duration: 0.3, ease: 'easeOut' }
-                      }}
-                      className={`p-6 rounded-2xl border transition-all duration-300 group relative overflow-hidden ${
-                        isDark
-                          ? 'bg-white/[0.03] border-white/10 hover:border-cyan-500/50 hover:bg-white/[0.06]'
-                          : 'bg-gray-50 border-gray-200 hover:border-cyan-500/50 hover:bg-white shadow-sm hover:shadow-md'
-                      }`}
-                    >
-                      {/* Glow effect on hover */}
-                      <div
-                        className="absolute -inset-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10 pointer-events-none"
-                        style={{
-                          background: `radial-gradient(circle at center, ${skill.color}20 0%, transparent 70%)`
-                        }}
-                      />
+        {/* Tab Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="flex flex-wrap justify-center gap-2 mb-10"
+        >
+          {skills.categories.map((cat) => {
+            const cfg = tabConfig[cat.title];
+            const isActive = activeTab === cat.title;
+            const Icon = cfg.icon;
+            return (
+              <button
+                key={cat.title}
+                onClick={() => setActiveTab(cat.title)}
+                className="relative flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 outline-none"
+                style={{
+                  background: isActive ? cfg.bg : 'transparent',
+                  color: isActive ? cfg.color : isDark ? '#6b7280' : '#9ca3af',
+                  border: `1.5px solid ${isActive ? cfg.color + '60' : isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}`,
+                  boxShadow: isActive ? `0 0 18px ${cfg.glow}` : 'none',
+                }}
+              >
+                <Icon className="w-4 h-4" />
+                <span className="hidden sm:inline">{cat.title}</span>
+                <span className="sm:hidden">{cat.title.split(' ')[0]}</span>
+                {isActive && (
+                  <motion.span
+                    layoutId="tab-dot"
+                    className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full"
+                    style={{ background: cfg.color, boxShadow: `0 0 8px ${cfg.glow}` }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </motion.div>
 
+        {/* Tab Panel */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+          >
+            {/* Panel header */}
+            <div
+              className="flex items-center gap-3 mb-8 px-6 py-4 rounded-2xl"
+              style={{
+                background: activeCfg.bg,
+                border: `1px solid ${activeCfg.color}25`,
+              }}
+            >
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                style={{ background: `${activeCfg.color}20`, boxShadow: `0 0 12px ${activeCfg.glow}` }}
+              >
+                <span style={{ color: activeCfg.color }}>
+                  <activeCfg.icon className="w-5 h-5" />
+                </span>
+              </div>
+              <div>
+                <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                  {activeCategory.title}
+                </h3>
+                <p className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                  {activeCategory.skills.length} skill{activeCategory.skills.length > 1 ? 's' : ''} in this category
+                </p>
+              </div>
+
+            </div>
+
+            {/* Skill Cards Grid */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+              {activeCategory.skills.map((skill, i) => {
+                return (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 18, scale: 0.97 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ duration: 0.4, delay: i * 0.07 }}
+                    whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                    className="group relative rounded-2xl p-5 overflow-hidden cursor-default"
+                    style={{
+                      background: isDark ? 'rgba(255,255,255,0.03)' : '#f9fafb',
+                      border: `1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.07)'}`,
+                      transition: 'border-color 0.3s, box-shadow 0.3s',
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLElement).style.borderColor = `${activeCfg.color}50`;
+                      (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 32px ${activeCfg.glow}`;
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLElement).style.borderColor = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.07)';
+                      (e.currentTarget as HTMLElement).style.boxShadow = 'none';
+                    }}
+                  >
+                    {/* Subtle top-left glow blob */}
+                    <div
+                      className="absolute -top-6 -left-6 w-20 h-20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-2xl"
+                      style={{ background: activeCfg.color }}
+                    />
+
+                    {/* Icon */}
+                    <div className="mb-4">
                       <div
-                        className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-all duration-500 group-hover:scale-110 p-2.5 relative overflow-hidden"
-                        style={{ backgroundColor: `${skill.color}20` }}
+                        className="w-12 h-12 rounded-xl flex items-center justify-center p-2.5 transition-transform duration-300 group-hover:scale-110"
+                        style={{ background: `${skill.color}18`, border: `1px solid ${skill.color}30` }}
                       >
-                        <div
-                          className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500"
-                          style={{ backgroundColor: skill.color }}
-                        />
                         <img
                           src={skill.icon}
                           alt={skill.name}
-                          className="w-9 h-9 object-contain z-10 transition-all duration-500 filter grayscale-[0.3] group-hover:grayscale-0 group-hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]"
+                          className="w-7 h-7 object-contain"
+                          style={{ filter: 'drop-shadow(0 0 4px rgba(255,255,255,0.1))' }}
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg';
+                            (e.target as HTMLImageElement).src =
+                              'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg';
                           }}
                         />
                       </div>
-                      <h4 className={`text-lg font-bold mb-2 transition-colors duration-300 ${isDark ? 'text-white' : 'text-gray-900'} group-hover:text-cyan-400`}>
-                        {skill.name}
-                      </h4>
-                      <p className={`text-sm leading-relaxed transition-colors duration-300 ${isDark ? 'text-gray-400' : 'text-gray-600'} group-hover:text-gray-300`}>
-                        {skill.description}
-                      </p>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                    </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+                    {/* Name + description */}
+                    <h4 className={`font-bold text-base mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                      {skill.name}
+                    </h4>
+                    <p className={`text-xs leading-relaxed mb-4 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+                      {skill.description}
+                    </p>
+
+
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Bottom row: Work Approach + Tech Growth */}
+        <div className="grid lg:grid-cols-2 gap-12 mt-24">
+
           {/* Work Approach */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -184,9 +262,8 @@ export default function Skills({ isDark }: SkillsProps) {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 * index }}
-                    className={`p-5 rounded-xl border ${
-                      isDark ? 'bg-white/5 border-white/10' : 'bg-gray-50 border-gray-200'
-                    }`}
+                    className={`p-5 rounded-xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-gray-50 border-gray-200'
+                      }`}
                   >
                     <div className="flex gap-4">
                       <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
@@ -207,7 +284,7 @@ export default function Skills({ isDark }: SkillsProps) {
             </div>
           </motion.div>
 
-          {/* Tech Growth / Currently Learning */}
+          {/* Tech Growth */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -217,9 +294,12 @@ export default function Skills({ isDark }: SkillsProps) {
             <h3 className={`text-2xl font-bold mb-8 ${isDark ? 'text-white' : 'text-gray-900'}`}>
               Tech Growth
             </h3>
-            <div className={`p-8 rounded-2xl border ${
-              isDark ? 'bg-gradient-to-br from-cyan-500/5 to-purple-500/5 border-white/10' : 'bg-gray-50 border-gray-200'
-            }`}>
+            <div
+              className={`p-8 rounded-2xl border ${isDark
+                ? 'bg-gradient-to-br from-cyan-500/5 to-purple-500/5 border-white/10'
+                : 'bg-gray-50 border-gray-200'
+                }`}
+            >
               <p className={`mb-6 italic ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                 "The beautiful thing about learning is that no one can take it away from you."
               </p>
@@ -239,9 +319,10 @@ export default function Skills({ isDark }: SkillsProps) {
                       transition={{ duration: 0.4, delay: 0.1 * index }}
                       className="flex items-center gap-3"
                     >
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                        isDark ? 'bg-white/10' : 'bg-white shadow-sm'
-                      }`}>
+                      <div
+                        className={`w-8 h-8 rounded-full flex items-center justify-center ${isDark ? 'bg-white/10' : 'bg-white shadow-sm'
+                          }`}
+                      >
                         <Icon className="w-4 h-4 text-cyan-400" />
                       </div>
                       <span className={`${isDark ? 'text-gray-300' : 'text-gray-700'}`}>{item.name}</span>
@@ -252,7 +333,9 @@ export default function Skills({ isDark }: SkillsProps) {
               </ul>
 
               <div className="mt-10 p-4 rounded-xl bg-cyan-500/10 border border-cyan-500/20">
-                <p className="text-xs text-cyan-400 font-medium uppercase tracking-wider mb-2">Learning Philosophy</p>
+                <p className="text-xs text-cyan-400 font-medium uppercase tracking-wider mb-2">
+                  Learning Philosophy
+                </p>
                 <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                   Focusing on mastering the fundamentals while exploring modern patterns to build scalable and efficient systems.
                 </p>
