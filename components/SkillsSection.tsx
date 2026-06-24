@@ -14,11 +14,13 @@ function MarqueeRow({
     direction?: 1 | -1;
     speed?: number;
 }) {
-    // Triplicate so the loop is seamless regardless of screen width
-    const tripled = [...items, ...items, ...items];
-    // Start the reverse-direction rows at the middle copy so items are always visible
-    const startX = direction === 1 ? '0%' : '-33.33%';
-    const endX = direction === 1 ? '-33.33%' : '0%';
+    // Repeat the items enough to span even the widest screens, then duplicate
+    // that unit so the marquee fills end-to-end and loops seamlessly.
+    const repeat = Math.max(2, Math.ceil(12 / items.length));
+    const unit = Array.from({ length: repeat }, () => items).flat();
+    const loop = [...unit, ...unit];
+    const startX = direction === 1 ? '0%' : '-50%';
+    const endX = direction === 1 ? '-50%' : '0%';
 
     return (
         <div className="relative overflow-hidden py-2" aria-hidden>
@@ -26,9 +28,9 @@ function MarqueeRow({
                 className="flex gap-4 w-max"
                 initial={{ x: startX }}
                 animate={{ x: endX }}
-                transition={{ duration: speed, ease: 'linear', repeat: Infinity }}
+                transition={{ duration: speed * repeat, ease: 'linear', repeat: Infinity }}
             >
-                {tripled.map((skill, i) => (
+                {loop.map((skill, i) => (
                     <div
                         key={`${skill.name}-${i}`}
                         className="flex items-center gap-3 px-5 py-3 rounded-2xl glass-dark group hover:border-white/20 transition-all cursor-default flex-shrink-0"
@@ -105,7 +107,7 @@ export default function SkillsSection() {
                 {skills.categories.map((cat, i) => (
                     <div key={cat.title}>
                         {/* Category label */}
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-2">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-2 text-center">
                             <motion.span
                                 initial={{ opacity: 0 }}
                                 whileInView={{ opacity: 1 }}
