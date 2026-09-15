@@ -34,13 +34,19 @@ const tabConfig: Record<string, {
   glow: string;
   bg: string;
 }> = {
-  'Frontend Development': {
-    icon: Monitor,
+  'Languages': {
+    icon: Code2,
     color: '#00f3ff',
     glow: 'rgba(0,243,255,0.4)',
     bg: 'rgba(0,243,255,0.07)',
   },
-  'Backend Development': {
+  'Frontend & UI': {
+    icon: Monitor,
+    color: '#3b82f6',
+    glow: 'rgba(59,130,246,0.4)',
+    bg: 'rgba(59,130,246,0.07)',
+  },
+  'Backend & APIs': {
     icon: Server,
     color: '#bc13fe',
     glow: 'rgba(188,19,254,0.4)',
@@ -52,13 +58,13 @@ const tabConfig: Record<string, {
     glow: 'rgba(0,255,136,0.4)',
     bg: 'rgba(0,255,136,0.07)',
   },
-  'UI/UX & Styling': {
-    icon: Paintbrush,
+  'Data & Analytics': {
+    icon: TrendingUp,
     color: '#ff00ff',
     glow: 'rgba(255,0,255,0.4)',
     bg: 'rgba(255,0,255,0.07)',
   },
-  'Tools & DevOps': {
+  'Tools & Workflow': {
     icon: Wrench,
     color: '#f7df1e',
     glow: 'rgba(247,223,30,0.4)',
@@ -66,11 +72,18 @@ const tabConfig: Record<string, {
   },
 };
 
+const defaultTabCfg = {
+  icon: Code2,
+  color: '#00f3ff',
+  glow: 'rgba(0,243,255,0.4)',
+  bg: 'rgba(0,243,255,0.07)',
+};
+
 export default function Skills({ isDark }: SkillsProps) {
   const [activeTab, setActiveTab] = useState(skills.categories[0].title);
 
-  const activeCategory = skills.categories.find((c) => c.title === activeTab)!;
-  const activeCfg = tabConfig[activeTab];
+  const activeCategory = skills.categories.find((c) => c.title === activeTab) || skills.categories[0];
+  const activeCfg = tabConfig[activeTab] || defaultTabCfg;
 
   // cardVariants kept for reference but not used as Variants type
 
@@ -107,7 +120,7 @@ export default function Skills({ isDark }: SkillsProps) {
           className="flex flex-wrap justify-center gap-2 mb-10"
         >
           {skills.categories.map((cat) => {
-            const cfg = tabConfig[cat.title];
+            const cfg = tabConfig[cat.title] || defaultTabCfg;
             const isActive = activeTab === cat.title;
             const Icon = cfg.icon;
             return (
@@ -301,7 +314,7 @@ export default function Skills({ isDark }: SkillsProps) {
                 }`}
             >
               <p className={`mb-6 italic ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                "The beautiful thing about learning is that no one can take it away from you."
+                &ldquo;The beautiful thing about learning is that no one can take it away from you.&rdquo;
               </p>
               <h4 className={`font-semibold mb-4 flex items-center gap-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                 <TrendingUp className="w-5 h-5 text-cyan-400" />

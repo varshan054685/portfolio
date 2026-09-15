@@ -69,7 +69,7 @@ export default function ProjectsSection() {
                 {/* Projects grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {projects.map((project, i) => {
-                        const grad = gradients[i];
+                        const grad = gradients[i % gradients.length];
                         return (
                             <motion.article
                                 key={project.id}
@@ -194,7 +194,7 @@ export default function ProjectsSection() {
                                 style={{
                                     background: selected.image
                                         ? '#000'
-                                        : `linear-gradient(135deg, ${gradients[selectedIdx].from}, ${gradients[selectedIdx].to})`,
+                                        : `linear-gradient(135deg, ${gradients[selectedIdx % gradients.length].from}, ${gradients[selectedIdx % gradients.length].to})`,
                                 }}
                             >
                                 {selected.image ? (
@@ -225,8 +225,8 @@ export default function ProjectsSection() {
                                                 key={t}
                                                 className="px-3 py-1.5 text-xs rounded-lg text-white/70"
                                                 style={{
-                                                    background: `${gradients[selectedIdx].from}18`,
-                                                    border: `1px solid ${gradients[selectedIdx].from}30`,
+                                                    background: `${gradients[selectedIdx % gradients.length].from}18`,
+                                                    border: `1px solid ${gradients[selectedIdx % gradients.length].from}30`,
                                                 }}
                                             >
                                                 {t}
@@ -256,7 +256,7 @@ export default function ProjectsSection() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-white transition-opacity hover:opacity-90"
-                                            style={{ background: `linear-gradient(135deg, ${gradients[selectedIdx].from}, ${gradients[selectedIdx].to})` }}
+                                            style={{ background: `linear-gradient(135deg, ${gradients[selectedIdx % gradients.length].from}, ${gradients[selectedIdx % gradients.length].to})` }}
                                         >
                                             <ExternalLink size={15} /> Live Demo
                                         </a>

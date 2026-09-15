@@ -14,13 +14,11 @@ const highlights = [
 
 const words = [
     "I'm a",
-    'Full Stack Developer',
-    'with a passion for',
-    'front-end craftsmanship',
-    'and human-centered design.',
-    'I build things that',
-    'feel great',
-    'to use.',
+    'Full-Stack Developer',
+    '& Data Engineer',
+    'passionate about building',
+    'scalable architectures',
+    'and interactive web apps.',
 ];
 
 export default function AboutSection() {
@@ -61,9 +59,9 @@ export default function AboutSection() {
                                     initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
                                     animate={isInView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
                                     transition={{ duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
-                                    className={`inline-block mr-3 mb-1 ${word === 'Full Stack Developer' || word === 'feel great'
+                                    className={`inline-block mr-3 mb-1 ${word === 'Full-Stack Developer' || word === '& Data Engineer'
                                             ? 'gradient-text'
-                                            : word === 'human-centered design.' || word === 'front-end craftsmanship'
+                                            : word === 'scalable architectures'
                                                 ? 'text-purple-400'
                                                 : 'text-white'
                                         }`}
@@ -75,8 +73,8 @@ export default function AboutSection() {
 
                         {/* Bio lines */}
                         {[
-                            'I believe in creating simple, human-centered designs that solve real problems and make a positive impact.',
-                            "When I'm not coding, I'm competing in hackathons, exploring new tech, or collaborating with like-minded developers.",
+                            'B.Com IT graduate with hands-on expertise in full-stack web development (MERN & PERN stacks), Python, and relational/NoSQL database systems.',
+                            'Experienced in building automated ETL pipelines, data warehouses, and AI-powered conversational chatbots.',
                         ].map((line, i) => (
                             <motion.p
                                 key={i}
@@ -99,9 +97,9 @@ export default function AboutSection() {
                             className="flex gap-8 mt-10"
                         >
                             {[
-                                { value: '6+', label: 'Projects Built' },
-                                { value: '2', label: 'Hackathons Won' },
-                                { value: '10+', label: 'Technologies' },
+                                { value: '6+', label: 'Key Projects' },
+                                { value: '1st', label: 'Hackathon Winner' },
+                                { value: '15+', label: 'Technologies' },
                             ].map((s) => (
                                 <div key={s.label}>
                                     <div className="text-3xl font-bold gradient-text">{s.value}</div>

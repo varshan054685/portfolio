@@ -13,20 +13,20 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Varshan K | Full Stack Developer',
-  description: 'Portfolio of Varshan K, a passionate full stack developer specializing in React.js, MERN/PERN stack, and creating human-centered web solutions.',
-  keywords: ['Varshan K', 'full stack developer', 'React.js', 'Next.js', 'TailwindCSS', 'MERN stack', 'portfolio', 'web developer'],
+  title: 'Varshan K | Full-Stack Developer & Data Engineer',
+  description: 'Portfolio of Varshan K, a Full-Stack Developer and Data Engineering specialist proficient in Python, SQL, MERN & PERN stacks, ETL pipelines, and AI integration.',
+  keywords: ['Varshan K', 'Full-Stack Developer', 'Data Engineer', 'Python', 'SQL', 'ETL Pipelines', 'React.js', 'Next.js', 'PostgreSQL', 'MongoDB', 'MERN Stack', 'PERN Stack'],
   authors: [{ name: 'Varshan K' }],
   openGraph: {
-    title: 'Varshan K | Full Stack Developer',
-    description: 'Passionate full stack developer creating human-centered web experiences',
+    title: 'Varshan K | Full-Stack Developer & Data Engineer',
+    description: 'Full-Stack Developer & Data Engineering specialist crafting scalable applications and data architectures.',
     type: 'website',
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Varshan K | Full Stack Developer',
-    description: 'Passionate full stack developer creating human-centered web experiences',
+    title: 'Varshan K | Full-Stack Developer & Data Engineer',
+    description: 'Full-Stack Developer & Data Engineering specialist crafting scalable applications and data architectures.',
   },
   robots: {
     index: true,
