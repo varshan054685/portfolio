@@ -14,9 +14,7 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Global scroll progress for hero exit + contact reveal
-  const { scrollY, scrollYProgress } = useScroll({
-    container: typeof window !== 'undefined' ? undefined : undefined,
-  });
+  const { scrollY, scrollYProgress } = useScroll();
 
   useEffect(() => {
     document.documentElement.classList.add('dark');

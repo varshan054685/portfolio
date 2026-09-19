@@ -39,7 +39,7 @@ export const skills = {
       title: 'Frontend & UI',
       skills: [
         { name: 'React.js', icon: '/icons/skills/react.svg', color: '#61dafb', description: 'Building interactive dashboards, SPAs, and stateful React components.' },
-        { name: 'Next.js', icon: '/icons/skills/react.svg', color: '#ffffff', description: 'Full-stack React framework for optimized server rendering and static site generation.' },
+        { name: 'Next.js', icon: '/icons/skills/nextjs.svg', color: '#ffffff', description: 'Full-stack React framework for optimized server rendering and static site generation.' },
         { name: 'Tailwind CSS', icon: '/icons/skills/tailwindcss.svg', color: '#06b6d4', description: 'Utility-first styling for rapid, highly responsive UI development.' },
         { name: 'Material UI', icon: '/icons/skills/materialui.svg', color: '#007fff', description: 'Professional UI component library for React applications.' },
       ],
@@ -49,7 +49,7 @@ export const skills = {
       skills: [
         { name: 'Node.js', icon: '/icons/skills/nodejs.svg', color: '#339933', description: 'Asynchronous event-driven runtime for backend services.' },
         { name: 'Express.js', icon: '/icons/skills/express.svg', color: '#ffffff', description: 'Building scalable RESTful API endpoints and web servers.' },
-        { name: 'Flask', icon: '/icons/skills/flask.svg', color: '#444444', description: 'Python micro-framework for serving AI models and REST backend services.' },
+        { name: 'Flask', icon: '/icons/skills/flask.svg', color: '#ffffff', description: 'Python micro-framework for serving AI models and REST backend services.' },
         { name: 'RESTful APIs', icon: '/icons/skills/rest-api.svg', color: '#bc13fe', description: 'Designing stateful & stateless APIs connected with frontend applications.' },
       ],
     },
