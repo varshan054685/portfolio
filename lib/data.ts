@@ -111,93 +111,135 @@ export const skills = {
   ],
 };
 
-export const projects = [
+export interface Project {
+  id: number;
+  title: string;
+  category?: string;
+  description: string;
+  longDescription: string;
+  image: string | null;
+  tech: string[];
+  github: string | null;
+  live: string | null;
+  download?: string | null;
+  releases?: string | null;
+  version?: string;
+  platform?: string;
+  downloadSize?: string;
+  featured: boolean;
+}
+
+export const projects: Project[] = [
   {
     id: 1,
     title: 'Sales Data ETL Pipeline',
+    category: 'Data Engineering',
     description: 'Automated ETL pipeline extracting raw sales records, transforming anomalies, and staging clean datasets.',
     longDescription: 'Designed and implemented an automated ETL pipeline extracting raw sales records, transforming data anomalies, and staging clean datasets. Leveraged Pandas and NumPy for vectorised processing, structuring schema-validated tables for analytical queries and dashboards.',
     image: '/images/sales-etl.jpg',
     tech: ['Python', 'Pandas', 'NumPy', 'PostgreSQL', 'ETL Pipelines'],
     github: 'https://github.com/varshan054685',
     live: null,
+    download: null,
     featured: true,
   },
   {
     id: 2,
     title: 'E-Commerce Data Warehouse',
+    category: 'Data Engineering',
     description: 'Relational database schemas organizing multi-dimensional customer, product, transaction, and order records.',
     longDescription: 'Architected relational database schemas organizing multi-dimensional customer, product, transaction, and order records. Formulated optimized SQL analytical queries and built data ingestion scripts in Python for seamless analytics.',
     image: '/images/data-warehouse.jpg',
     tech: ['Python', 'SQL', 'PostgreSQL', 'Data Warehousing'],
     github: 'https://github.com/varshan054685',
     live: null,
+    download: null,
     featured: true,
   },
   {
     id: 3,
     title: 'DataMind AI',
+    category: 'AI / Full-Stack',
     description: 'AI-powered Data Science Operating System for automated dataset profiling, explainable EDA, and ML model building.',
     longDescription: 'An enterprise-grade Data Science Operating System pairing a Next.js 14 frontend with a Python FastAPI data & AI backend. Features automated dataset profiling, explainable exploratory data analysis, signal discovery scans with leakage detection, and automated ML model training reaching >97% accuracy.',
     image: '/images/AI.png',
     tech: ['Next.js', 'Python', 'FastAPI', 'Pandas', 'scikit-learn', 'Tailwind CSS'],
     github: 'https://github.com/varshan05446/AI-Data-Science',
     live: null,
+    download: null,
     featured: true,
   },
   {
     id: 4,
     title: 'Inventory Management System',
+    category: 'Desktop App',
     description: 'Offline-first Windows desktop application for managing raw materials, BOM recipes, production, stock, and payroll.',
-    longDescription: 'An offline-first desktop application built with Electron, React 18, TypeScript, Tailwind CSS, and SQLite (sql.js). Features include dashboard analytics, purchase entry, production with BOM recipe consumption, finished-goods inventory, staff attendance, wages, overtime, dispatch, 20+ PDF/Excel reports, and automated encrypted backup/restore.',
+    longDescription: 'An offline desktop application built with Electron, React 18, TypeScript, Tailwind CSS, and SQLite (sql.js). Features include dashboard analytics, purchase entry, production with BOM recipe consumption, finished-goods inventory, staff attendance, wages, overtime, dispatch, 20+ PDF/Excel reports, and automated encrypted backup/restore.',
     image: '/images/inventory.png',
     tech: ['Electron', 'React', 'TypeScript', 'Tailwind CSS', 'SQLite'],
     github: 'https://github.com/varshan054685/Inventory_Management',
-    live: 'https://github.com/varshan054685/Inventory_Management/releases',
+    live: null,
+    download: 'https://github.com/varshan054685/Inventory_Management/releases/download/v1.1.0/InventoryManagement-Setup-1.1.0.exe',
+    releases: 'https://github.com/varshan054685/Inventory_Management/releases',
+    version: 'v1.1.0',
+    platform: 'Windows Setup (.exe)',
+    downloadSize: '101 MB',
     featured: true,
   },
   {
     id: 5,
     title: 'Lumina Finance App',
+    category: 'Web App',
     description: 'Modern finance tracking application with AI insights, budget goal setting, and comprehensive dashboard capabilities.',
     longDescription: 'Lumina is an advanced personal finance application designed to help users manage their money effectively. It features intuitive dashboards, transaction tracking, budget goal setting, and AI-driven predictive insights for smarter financial decisions.',
     image: '/images/lumina.png',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'React', 'AI Insights'],
-    github: 'https://github.com/varshan054685/studio.git',
+    github: 'https://github.com/varshan054685/studio',
     live: 'https://lumina-expense.netlify.app',
+    download: null,
     featured: true,
   },
   {
     id: 6,
-    title: 'Automatic Time-Table Scheduler',
-    description: 'Automated scheduling engine designed to eliminate resource conflicts across multi-department academic timetables.',
-    longDescription: 'Developed an automated scheduling engine designed to eliminate resource conflicts across multi-department academic timetables. Implemented responsive interactive schedule views using React.js backed by robust relational operations in PostgreSQL.',
+    title: 'Automatic Timetable Scheduler',
+    category: 'Desktop App',
+    description: 'Offline desktop application generating conflict-free academic timetables using Google OR-Tools CP-SAT constraint solver & Electron.',
+    longDescription: 'A fully offline Windows desktop application engineered to generate conflict-free timetables for schools and colleges using Google OR-Tools CP-SAT constraint programming. Features an Electron shell paired with a React 18 frontend, local SQLite storage with automated migrations/backups, Excel master data ingestion with row-level validation previews, teacher workload & availability constraint rules, and versioned schedule review.',
     image: '/images/scheduler.png',
-    tech: ['PostgreSQL', 'Express.js', 'React', 'Node.js', 'PERN Stack'],
+    tech: ['Electron', 'React', 'Python', 'FastAPI', 'Google OR-Tools', 'SQLite', 'Tailwind CSS'],
     github: 'https://github.com/varshan054685/Automatic_Time-Table_scheduler',
-    live: 'https://automatic-time-table-scheduler.vercel.app/',
+    live: null,
+    download: 'https://github.com/varshan054685/Automatic_Time-Table_scheduler/releases/download/v1.0.1/Automatic.Timetable.Scheduler.Setup.1.0.1.exe',
+    releases: 'https://github.com/varshan054685/Automatic_Time-Table_scheduler/releases',
+    version: 'v1.0.1',
+    platform: 'Windows Setup (.exe)',
+    downloadSize: '176 MB',
     featured: true,
   },
   {
     id: 7,
     title: 'AI Conversational Assistant',
+    category: 'AI / Chatbot',
     description: 'Interactive AI chatbot delivering real-time user query resolutions built during a fast-paced hackathon.',
     longDescription: 'Collaborated in a fast-paced hackathon team to build an interactive AI chatbot delivering real-time user query resolutions. Awarded 1st place at the Internal Hackathon 2025. Connected a Python/Flask inference backend with an asynchronous JavaScript web front-end.',
     image: null,
     tech: ['Python', 'Flask', 'JavaScript', 'REST APIs', 'AI Chatbot'],
     github: 'https://github.com/varshan054685',
     live: null,
+    download: null,
     featured: true,
   },
   {
     id: 8,
     title: 'Portfolio Website',
+    category: 'Web App',
     description: 'Built and deployed a responsive personal portfolio showcasing projects, technical skills, and live web applications.',
     longDescription: 'Built and deployed a responsive personal portfolio showcasing projects, technical skills, and live web applications using Next.js, Tailwind CSS, and Framer Motion.',
     image: '/images/portfolio.png',
     tech: ['Next.js', 'Tailwind CSS', 'TypeScript', 'Framer Motion'],
     github: 'https://github.com/varshan054685/portfolio',
     live: 'https://varshan-portfolio.vercel.app',
+    download: null,
     featured: true,
   },
 ];

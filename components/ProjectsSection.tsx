@@ -2,9 +2,9 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { projects } from '@/lib/data';
-import { Github, ExternalLink, X, Code2, ArrowUpRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { projects, Project } from '@/lib/data';
+import { Github, ExternalLink, X, Code2, ArrowUpRight, Download, Package } from 'lucide-react';
 
 const gradients = [
     { from: '#3b82f6', to: '#7c3aed' },
@@ -16,11 +16,11 @@ const gradients = [
 ];
 
 export default function ProjectsSection() {
-    const [selected, setSelected] = useState<(typeof projects)[0] | null>(null);
+    const [selected, setSelected] = useState<Project | null>(null);
     const [selectedIdx, setSelectedIdx] = useState(0);
     const ref = useRef<HTMLDivElement>(null);
 
-    const openModal = (p: (typeof projects)[0], i: number) => {
+    const openModal = (p: Project, i: number) => {
         setSelected(p);
         setSelectedIdx(i);
         document.body.style.overflow = 'hidden';
@@ -104,44 +104,70 @@ export default function ProjectsSection() {
                                     )}
                                     {/* Hover overlay */}
                                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                                    
                                     {/* View arrow */}
                                     <motion.div
                                         initial={{ opacity: 0, scale: 0.7 }}
                                         whileHover={{ opacity: 1, scale: 1 }}
-                                        className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                                        className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10"
                                     >
                                         <ArrowUpRight className="w-4 h-4 text-white" />
                                     </motion.div>
-                                    {project.featured && (
-                                        <span className="absolute top-4 left-4 px-3 py-1 text-xs font-medium rounded-full bg-black/50 text-white/80 backdrop-blur-sm">
-                                            Featured
-                                        </span>
-                                    )}
+
+                                    {/* Top Badges */}
+                                    <div className="absolute top-4 left-4 flex flex-wrap items-center gap-1.5 z-10">
+                                        {project.featured && (
+                                            <span className="px-3 py-1 text-xs font-medium rounded-full bg-black/60 text-white/90 backdrop-blur-md border border-white/10">
+                                                Featured
+                                            </span>
+                                        )}
+                                        {project.category && (
+                                            <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-cyan-500/20 text-cyan-300 backdrop-blur-md border border-cyan-500/30 flex items-center gap-1">
+                                                {project.download && <Package size={11} />}
+                                                {project.category}
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
 
                                 {/* Content */}
                                 <div className="p-6">
-                                    <h3 className="text-white font-bold text-lg mb-2 group-hover:text-cyan-400 transition-colors">
-                                        {project.title}
-                                    </h3>
+                                    <div className="flex items-start justify-between gap-2 mb-2">
+                                        <h3 className="text-white font-bold text-lg group-hover:text-cyan-400 transition-colors">
+                                            {project.title}
+                                        </h3>
+                                    </div>
                                     <p className="text-white/50 text-sm leading-relaxed mb-4 line-clamp-2">
                                         {project.description}
                                     </p>
-                                    {/* Tech pills */}
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.tech.slice(0, 3).map((t) => (
-                                            <span
-                                                key={t}
-                                                className="px-2.5 py-1 text-xs rounded-lg bg-white/5 text-white/50"
-                                            >
-                                                {t}
+                                    
+                                    {/* Action hint & Tech pills */}
+                                    <div className="flex items-center justify-between gap-2 pt-2 border-t border-white/5">
+                                        <div className="flex flex-wrap gap-1.5">
+                                            {project.tech.slice(0, 3).map((t) => (
+                                                <span
+                                                    key={t}
+                                                    className="px-2.5 py-0.5 text-xs rounded-lg bg-white/5 text-white/50"
+                                                >
+                                                    {t}
+                                                </span>
+                                            ))}
+                                            {project.tech.length > 3 && (
+                                                <span className="px-2 py-0.5 text-xs rounded-lg bg-white/5 text-white/30">
+                                                    +{project.tech.length - 3}
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        {project.download ? (
+                                            <span className="text-xs font-medium text-cyan-400 flex items-center gap-1 flex-shrink-0">
+                                                <Download size={12} /> {project.version || 'Installer'}
                                             </span>
-                                        ))}
-                                        {project.tech.length > 3 && (
-                                            <span className="px-2.5 py-1 text-xs rounded-lg bg-white/5 text-white/30">
-                                                +{project.tech.length - 3}
+                                        ) : project.live ? (
+                                            <span className="text-xs font-medium text-emerald-400 flex items-center gap-1 flex-shrink-0">
+                                                <ExternalLink size={12} /> Live
                                             </span>
-                                        )}
+                                        ) : null}
                                     </div>
                                 </div>
 
@@ -214,7 +240,22 @@ export default function ProjectsSection() {
 
                             {/* Body */}
                             <div className="p-7">
-                                <h3 className="text-white text-2xl font-bold mb-3">{selected.title}</h3>
+                                <div className="flex flex-wrap items-center gap-2 mb-2">
+                                    <h3 className="text-white text-2xl font-bold">{selected.title}</h3>
+                                    {selected.version && (
+                                        <span className="px-2.5 py-0.5 text-xs font-mono rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                                            {selected.version}
+                                        </span>
+                                    )}
+                                </div>
+
+                                {selected.platform && (
+                                    <div className="flex items-center gap-2 text-xs text-white/40 mb-3 font-mono">
+                                        <span>{selected.platform}</span>
+                                        {selected.downloadSize && <span>• {selected.downloadSize}</span>}
+                                    </div>
+                                )}
+
                                 <p className="text-white/50 text-sm leading-relaxed mb-6">{selected.longDescription}</p>
 
                                 <div className="mb-6">
@@ -235,7 +276,7 @@ export default function ProjectsSection() {
                                     </div>
                                 </div>
 
-                                <div className="flex gap-3">
+                                <div className="flex flex-wrap gap-3">
                                     {selected.github ? (
                                         <a
                                             href={selected.github}
@@ -250,12 +291,26 @@ export default function ProjectsSection() {
                                             <Code2 size={15} /> Private
                                         </span>
                                     )}
-                                    {selected.live ? (
+
+                                    {selected.download ? (
+                                        <a
+                                            href={selected.download}
+                                            download
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white transition-all shadow-lg hover:shadow-cyan-500/25 hover:scale-[1.02] active:scale-[0.98]"
+                                            style={{
+                                                background: `linear-gradient(135deg, ${gradients[selectedIdx % gradients.length].from}, ${gradients[selectedIdx % gradients.length].to})`,
+                                            }}
+                                        >
+                                            <Download size={15} /> Download Setup {selected.version ? `(${selected.version})` : '(.exe)'}
+                                        </a>
+                                    ) : selected.live ? (
                                         <a
                                             href={selected.live}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-white transition-opacity hover:opacity-90"
+                                            className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium text-white transition-opacity hover:opacity-90 shadow-lg hover:scale-[1.02] active:scale-[0.98]"
                                             style={{ background: `linear-gradient(135deg, ${gradients[selectedIdx % gradients.length].from}, ${gradients[selectedIdx % gradients.length].to})` }}
                                         >
                                             <ExternalLink size={15} /> Live Demo
@@ -264,6 +319,17 @@ export default function ProjectsSection() {
                                         <span className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm bg-white/5 text-white/30 border border-white/5 cursor-not-allowed">
                                             <ExternalLink size={15} /> No Demo
                                         </span>
+                                    )}
+
+                                    {selected.releases && (
+                                        <a
+                                            href={selected.releases}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium bg-white/5 text-white/70 hover:text-white hover:bg-white/10 border border-white/10 transition-colors"
+                                        >
+                                            <ExternalLink size={14} /> Release Notes
+                                        </a>
                                     )}
                                 </div>
                             </div>

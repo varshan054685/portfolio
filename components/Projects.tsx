@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { projects } from '@/lib/data';
-import { Github, ExternalLink, X, ChevronRight, Code2 } from 'lucide-react';
+import { projects, Project } from '@/lib/data';
+import { Github, ExternalLink, X, ChevronRight, Code2, Download, Package } from 'lucide-react';
 
 interface ProjectsProps {
   isDark: boolean;
@@ -21,10 +21,10 @@ const projectGradients = [
 ];
 
 export default function Projects({ isDark }: ProjectsProps) {
-  const [selectedProject, setSelectedProject] = useState<(typeof projects)[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  const openModal = (project: (typeof projects)[0], index: number) => {
+  const openModal = (project: Project, index: number) => {
     setSelectedProject(project);
     setSelectedIndex(index);
     document.body.style.overflow = 'hidden';
@@ -58,7 +58,7 @@ export default function Projects({ isDark }: ProjectsProps) {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => {
-            const gradient = projectGradients[index];
+            const gradient = projectGradients[index % projectGradients.length];
             return (
               <motion.div
                 key={project.id}
@@ -88,11 +88,18 @@ export default function Projects({ isDark }: ProjectsProps) {
                   )}
 
                   {/* Featured Badge */}
-                  {project.featured && (
-                    <span className="absolute top-3 right-3 px-3 py-1 text-xs font-medium rounded-full bg-black/50 text-white backdrop-blur-md border border-white/10 z-10">
-                      Featured
-                    </span>
-                  )}
+                  <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+                    {project.category && (
+                      <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-blue-500/20 text-blue-300 backdrop-blur-md border border-blue-500/30">
+                        {project.category}
+                      </span>
+                    )}
+                    {project.featured && (
+                      <span className="px-3 py-1 text-xs font-medium rounded-full bg-black/50 text-white backdrop-blur-md border border-white/10">
+                        Featured
+                      </span>
+                    )}
+                  </div>
                   
                   {/* Large Letter */}
                   {!project.image && (
@@ -130,10 +137,17 @@ export default function Projects({ isDark }: ProjectsProps) {
                   </div>
 
                   {/* View Details Link */}
-                  <button className="flex items-center gap-1 text-sm text-blue-500 hover:text-blue-400 transition-colors">
-                    <span>View Details</span>
-                    <ChevronRight size={16} />
-                  </button>
+                  <div className="flex items-center justify-between">
+                    <button className="flex items-center gap-1 text-sm text-blue-500 hover:text-blue-400 transition-colors">
+                      <span>View Details</span>
+                      <ChevronRight size={16} />
+                    </button>
+                    {project.download && (
+                      <span className="text-xs text-blue-400 flex items-center gap-1">
+                        <Download size={12} /> {project.version || 'Installer'}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             );
@@ -182,7 +196,7 @@ export default function Projects({ isDark }: ProjectsProps) {
               <div
                 className="relative h-56 sm:h-72 overflow-hidden"
                 style={{
-                  background: selectedProject.image ? '#000' : `linear-gradient(135deg, ${projectGradients[selectedIndex].from}, ${projectGradients[selectedIndex].to})`,
+                  background: selectedProject.image ? '#000' : `linear-gradient(135deg, ${projectGradients[selectedIndex % projectGradients.length].from}, ${projectGradients[selectedIndex % projectGradients.length].to})`,
                 }}
               >
                 {selectedProject.image && (
@@ -198,7 +212,7 @@ export default function Projects({ isDark }: ProjectsProps) {
                 {!selectedProject.image && (
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-9xl font-bold text-white/20 select-none">
-                      {projectGradients[selectedIndex].letter}
+                      {projectGradients[selectedIndex % projectGradients.length].letter}
                     </span>
                   </div>
                 )}
@@ -206,9 +220,23 @@ export default function Projects({ isDark }: ProjectsProps) {
 
               {/* Modal Content */}
               <div className="p-6">
-                <h3 className={`text-2xl font-bold mb-3 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                  {selectedProject.title}
-                </h3>
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    {selectedProject.title}
+                  </h3>
+                  {selectedProject.version && (
+                    <span className="px-2.5 py-0.5 text-xs font-mono rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                      {selectedProject.version}
+                    </span>
+                  )}
+                </div>
+
+                {selectedProject.platform && (
+                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-3 font-mono">
+                    <span>{selectedProject.platform}</span>
+                    {selectedProject.downloadSize && <span>• {selectedProject.downloadSize}</span>}
+                  </div>
+                )}
                 
                 <p className={`mb-6 text-sm leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                   {selectedProject.longDescription}
@@ -236,7 +264,7 @@ export default function Projects({ isDark }: ProjectsProps) {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-3">
+                <div className="flex flex-wrap gap-3">
                   {selectedProject.github ? (
                     <a
                       href={selectedProject.github}
@@ -259,15 +287,29 @@ export default function Projects({ isDark }: ProjectsProps) {
                       <span>Private</span>
                     </span>
                   )}
-                  
-                  {selectedProject.live ? (
+
+                  {selectedProject.download ? (
+                    <a
+                      href={selectedProject.download}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-all hover:opacity-90 shadow-lg"
+                      style={{
+                        background: `linear-gradient(135deg, ${projectGradients[selectedIndex % projectGradients.length].from}, ${projectGradients[selectedIndex % projectGradients.length].to})`,
+                      }}
+                    >
+                      <Download size={16} />
+                      <span>Download Setup {selectedProject.version ? `(${selectedProject.version})` : '(.exe)'}</span>
+                    </a>
+                  ) : selectedProject.live ? (
                     <a
                       href={selectedProject.live}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-all hover:opacity-90"
                       style={{
-                        background: `linear-gradient(135deg, ${projectGradients[selectedIndex].from}, ${projectGradients[selectedIndex].to})`,
+                        background: `linear-gradient(135deg, ${projectGradients[selectedIndex % projectGradients.length].from}, ${projectGradients[selectedIndex % projectGradients.length].to})`,
                       }}
                     >
                       <ExternalLink size={16} />
@@ -280,6 +322,22 @@ export default function Projects({ isDark }: ProjectsProps) {
                       <ExternalLink size={16} />
                       <span>No Demo</span>
                     </span>
+                  )}
+
+                  {selectedProject.releases && (
+                    <a
+                      href={selectedProject.releases}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                        isDark
+                          ? 'bg-gray-800/60 text-gray-300 hover:bg-gray-800 border border-gray-700'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
+                      }`}
+                    >
+                      <ExternalLink size={14} />
+                      <span>Release Notes</span>
+                    </a>
                   )}
                 </div>
               </div>
